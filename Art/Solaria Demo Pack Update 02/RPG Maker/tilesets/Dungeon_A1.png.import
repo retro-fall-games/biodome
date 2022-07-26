@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtqm2t85dmgw2"
-path="res://.godot/imported/clouds.png-5ae449c5ec6f5de8b56a31bff2fbc6c5.ctex"
+uid="uid://qgn3hyl8mdyf"
+path="res://.godot/imported/Dungeon_A1.png-23a22de57a67a4a909f4789b5ff963b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/tiles/clouds.png"
-dest_files=["res://.godot/imported/clouds.png-5ae449c5ec6f5de8b56a31bff2fbc6c5.ctex"]
+source_file="res://Art/Solaria Demo Pack Update 02/RPG Maker/tilesets/Dungeon_A1.png"
+dest_files=["res://.godot/imported/Dungeon_A1.png-23a22de57a67a4a909f4789b5ff963b7.ctex"]
 
 [params]
 

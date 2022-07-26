@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dm824i4rck5oq"
-path="res://.godot/imported/platformer-grass-dirt-tiles.png-349ebcbc8be61a0cedede39d674adc9a.ctex"
+uid="uid://bc2d42q55awc3"
+path="res://.godot/imported/Hero 01 32.png-fc64cbbef6201411f3c63b279e1d570f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/tiles/platformer-grass-dirt-tiles.png"
-dest_files=["res://.godot/imported/platformer-grass-dirt-tiles.png-349ebcbc8be61a0cedede39d674adc9a.ctex"]
+source_file="res://Art/Solaria Demo Pack Update 02/32x32/Sprites/Hero 01 32.png"
+dest_files=["res://.godot/imported/Hero 01 32.png-fc64cbbef6201411f3c63b279e1d570f.ctex"]
 
 [params]
 

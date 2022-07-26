@@ -8,6 +8,28 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "Node",
+"class": &"BaseState",
+"language": &"GDScript",
+"path": "res://Scripts/states/base_state.gd"
+}, {
+"base": "BaseState",
+"class": &"MoveState",
+"language": &"GDScript",
+"path": "res://Scripts/states/move.gd"
+}, {
+"base": "CharacterBody2D",
+"class": &"Player",
+"language": &"GDScript",
+"path": "res://Scripts/player.gd"
+}]
+_global_script_class_icons={
+"BaseState": "",
+"MoveState": "",
+"Player": ""
+}
+
 [application]
 
 config/name="Biodome"

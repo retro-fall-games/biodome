@@ -1,134 +1,134 @@
-[gd_scene load_steps=43 format=3 uid="uid://dfipqx5uo87wr"]
+[gd_scene load_steps=11 format=3 uid="uid://l7qf85gbbdpf"]
 
-[ext_resource type="Script" path="res://Characters/testman.gd" id="1_5gm1e"]
-[ext_resource type="Texture2D" uid="uid://c8wkn1pq25qx6" path="res://Art/testman/testman-Sheet.png" id="2_d5i26"]
+[ext_resource type="Texture2D" uid="uid://c8wkn1pq25qx6" path="res://Art/Testman Platformer Pack/testman/testman-Sheet.png" id="2_d5i26"]
+
+[sub_resource type="GDScript" id="GDScript_fccaw"]
+script/source = "extends CharacterBody2D
+
+@export var move_speed : float = 100
+@export var jump_velocity : float = -400
+@export var starting_direction : Vector2 = Vector2(0, 1)
+@export var max_velocity : Vector2 = Vector2(500, 500)
+@export var time_to_run : float = 2
+@export var run_multiplier : float = 2
+@export var wall_jump_horizontal: float = 200
+
+var _duration_pressed = 0
+var _is_running = false
+var _is_jumping = false
+var _is_falling = false
+
+@onready var animation_player = $AnimationPlayer
+@onready var sprite = $Sprite2D
+
+# Get the gravity from the project settings to be synced with RigidDynamicBody nodes.
+var gravity = ProjectSettings.get_setting(\"physics/2d/default_gravity\")
+
+func _physics_process(delta):
+		
+	# Frame init
+	_is_running = false
+		
+	# Handle flips, button duration, and is running
+	if Input.is_action_pressed(\"left\"):
+		
+		# If we were facing right and now we are pushing left
+		if sprite.flip_h == false:
+			_duration_pressed = 0
+		elif _duration_pressed > time_to_run:
+			_is_running = true
+			
+		sprite.flip_h = true
+		_duration_pressed += delta	
+		
+	if Input.is_action_pressed(\"right\"):
+		
+		# If we were facing left and now we are pushing right
+		if sprite.flip_h == true:
+			_duration_pressed = 0
+		elif _duration_pressed > time_to_run:
+			_is_running = true
+			
+		sprite.flip_h = false
+		_duration_pressed += delta	
+	
+	var is_on_floor = is_on_floor()
+	var is_on_ceiling = is_on_ceiling()
+	var is_on_wall = is_on_wall()
+	
+	# Handle Floor
+	if is_on_floor:
+		_is_jumping = false
+		_is_falling = false
+	
+	# Handle Jump.
+	var is_jump_pressed = Input.is_action_just_pressed(\"jump\");
+	if is_jump_pressed and is_on_floor:
+		velocity.y = jump_velocity
+		_is_jumping = true
+		_is_falling = false
+	
+	# Get the input direction and handle the movement/deceleration.
+	var direction = Input.get_axis(\"left\", \"right\")
+	if direction:
+		if _is_running:
+			velocity.x = direction * move_speed * run_multiplier
+		else:
+			velocity.x = direction * move_speed
+	else:
+		velocity.x = move_toward(velocity.x, 0, move_speed)
+		
+	# Handle Ceiling, Walls and the gravity.
+	if is_on_ceiling:
+		velocity.y = gravity * delta
+	elif is_on_wall:
+		velocity.y = 0
+		if is_jump_pressed:
+			if sprite.flip_h:
+				velocity.x = wall_jump_horizontal
+			else:
+				velocity.x = -wall_jump_horizontal
+			velocity.y = jump_velocity
+	elif not is_on_floor:
+		velocity.y += gravity * delta
+			
+	# Clamp final velocities
+	velocity.x = clamp(velocity.x, -max_velocity.x, max_velocity.x)
+	velocity.y = clamp(velocity.y, -max_velocity.y, max_velocity.y)
+		
+	move_and_slide()
+		
+	var velocity_direction = velocity.normalized()		
+		
+	# Handle what state to use for animations
+	if _is_jumping:
+		_play_animation(\"Jump\")
+	elif velocity_direction.y == 1:
+		_is_falling = true
+		_is_running = false
+		_is_jumping = false
+		_duration_pressed = 0
+		_play_animation(\"Fall\")
+	elif (velocity.x != 0):
+		if _is_running:
+			_play_animation(\"Run\")
+		else:
+			_play_animation(\"Walk\")
+	else:
+		_is_falling = false
+		_is_jumping = false
+		_is_running = false
+		_duration_pressed = 0
+		_play_animation(\"Idle\")
+	
+	
+func _play_animation(name):
+	if name != animation_player.current_animation:
+		animation_player.play(name)
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ufpm7"]
 size = Vector2(5, 8)
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6d205"]
-animation = &"Idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w8lny"]
-animation = &"Idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s8f4w"]
-animation = &"Idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6267b"]
-animation = &"Idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n5r7q"]
-animation = &"Idle"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_uo4x8"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_6d205")
-blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_w8lny")
-blend_point_1/pos = Vector2(1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_s8f4w")
-blend_point_2/pos = Vector2(0, 1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_6267b")
-blend_point_3/pos = Vector2(0, -1)
-blend_point_4/node = SubResource("AnimationNodeAnimation_n5r7q")
-blend_point_4/pos = Vector2(0, 0)
-blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7y3sk"]
-animation = &"Jump"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xd4qf"]
-animation = &"Fall"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_58pc0"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_7y3sk")
-blend_point_0/pos = Vector2(0, -1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_xd4qf")
-blend_point_1/pos = Vector2(0, 1)
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c8r5l"]
-animation = &"Run"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4bdfs"]
-animation = &"Run"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rahr4"]
-animation = &"Run"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3y46t"]
-animation = &"Run"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_1mic8"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_c8r5l")
-blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_4bdfs")
-blend_point_1/pos = Vector2(1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_rahr4")
-blend_point_2/pos = Vector2(0, -1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_3y46t")
-blend_point_3/pos = Vector2(0, 1)
-blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ktxdj"]
-animation = &"Walk"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qemf5"]
-animation = &"Walk"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1j2sc"]
-animation = &"Walk"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_280o8"]
-animation = &"Walk"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_o1dxt"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_ktxdj")
-blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_qemf5")
-blend_point_1/pos = Vector2(1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_1j2sc")
-blend_point_2/pos = Vector2(0, -1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_280o8")
-blend_point_3/pos = Vector2(0, 1)
-blend_mode = 1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h15h0"]
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aqj5j"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sf2ml"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yw20v"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x3x7p"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6ljp4"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_egiou"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_koqi0"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xt61b"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jjxi2"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eeuhk"]
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_yqfp0"]
-states/Idle/node = SubResource("AnimationNodeBlendSpace2D_uo4x8")
-states/Idle/position = Vector2(337, 100)
-states/Jump/node = SubResource("AnimationNodeBlendSpace2D_58pc0")
-states/Jump/position = Vector2(467, 274)
-states/Run/node = SubResource("AnimationNodeBlendSpace2D_1mic8")
-states/Run/position = Vector2(609, 100)
-states/Start/position = Vector2(180, 100)
-states/Walk/node = SubResource("AnimationNodeBlendSpace2D_o1dxt")
-states/Walk/position = Vector2(467, 100)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_h15h0"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_aqj5j"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_sf2ml"), "Walk", "Run", SubResource("AnimationNodeStateMachineTransition_yw20v"), "Run", "Walk", SubResource("AnimationNodeStateMachineTransition_x3x7p"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_6ljp4"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_egiou"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_koqi0"), "Jump", "Run", SubResource("AnimationNodeStateMachineTransition_xt61b"), "Jump", "Walk", SubResource("AnimationNodeStateMachineTransition_jjxi2"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_eeuhk")]
-graph_offset = Vector2(11, 55)
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_h1qky"]
 
 [sub_resource type="Animation" id="Animation_ifk8u"]
 resource_name = "Fall"
@@ -140,7 +140,7 @@ tracks/0/path = NodePath("Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2i(0, 6), Vector2i(1, 6)]
@@ -164,7 +164,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_fwbgv"]
 resource_name = "Jump"
-length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -172,7 +171,7 @@ tracks/0/path = NodePath("Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3)]
@@ -238,7 +237,7 @@ _data = {
 }
 
 [node name="testman" type="CharacterBody2D"]
-script = ExtResource("1_5gm1e")
+script = SubResource("GDScript_fccaw")
 move_speed = 25.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -249,16 +248,6 @@ vframes = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 4)
 shape = SubResource("RectangleShape2D_ufpm7")
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_yqfp0")
-anim_player = NodePath("../AnimationPlayer")
-active = true
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_h1qky")
-parameters/Idle/blend_position = Vector2(0, 0)
-parameters/Jump/blend_position = Vector2(0, 0)
-parameters/Run/blend_position = Vector2(0, 0)
-parameters/Walk/blend_position = Vector2(0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
