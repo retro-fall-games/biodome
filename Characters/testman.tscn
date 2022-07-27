@@ -1,131 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://l7qf85gbbdpf"]
+[gd_scene load_steps=12 format=3 uid="uid://l7qf85gbbdpf"]
 
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_emtbk"]
 [ext_resource type="Texture2D" uid="uid://c8wkn1pq25qx6" path="res://Art/Testman Platformer Pack/testman/testman-Sheet.png" id="2_d5i26"]
-
-[sub_resource type="GDScript" id="GDScript_fccaw"]
-script/source = "extends CharacterBody2D
-
-@export var move_speed : float = 100
-@export var jump_velocity : float = -400
-@export var starting_direction : Vector2 = Vector2(0, 1)
-@export var max_velocity : Vector2 = Vector2(500, 500)
-@export var time_to_run : float = 2
-@export var run_multiplier : float = 2
-@export var wall_jump_horizontal: float = 200
-
-var _duration_pressed = 0
-var _is_running = false
-var _is_jumping = false
-var _is_falling = false
-
-@onready var animation_player = $AnimationPlayer
-@onready var sprite = $Sprite2D
-
-# Get the gravity from the project settings to be synced with RigidDynamicBody nodes.
-var gravity = ProjectSettings.get_setting(\"physics/2d/default_gravity\")
-
-func _physics_process(delta):
-		
-	# Frame init
-	_is_running = false
-		
-	# Handle flips, button duration, and is running
-	if Input.is_action_pressed(\"left\"):
-		
-		# If we were facing right and now we are pushing left
-		if sprite.flip_h == false:
-			_duration_pressed = 0
-		elif _duration_pressed > time_to_run:
-			_is_running = true
-			
-		sprite.flip_h = true
-		_duration_pressed += delta	
-		
-	if Input.is_action_pressed(\"right\"):
-		
-		# If we were facing left and now we are pushing right
-		if sprite.flip_h == true:
-			_duration_pressed = 0
-		elif _duration_pressed > time_to_run:
-			_is_running = true
-			
-		sprite.flip_h = false
-		_duration_pressed += delta	
-	
-	var is_on_floor = is_on_floor()
-	var is_on_ceiling = is_on_ceiling()
-	var is_on_wall = is_on_wall()
-	
-	# Handle Floor
-	if is_on_floor:
-		_is_jumping = false
-		_is_falling = false
-	
-	# Handle Jump.
-	var is_jump_pressed = Input.is_action_just_pressed(\"jump\");
-	if is_jump_pressed and is_on_floor:
-		velocity.y = jump_velocity
-		_is_jumping = true
-		_is_falling = false
-	
-	# Get the input direction and handle the movement/deceleration.
-	var direction = Input.get_axis(\"left\", \"right\")
-	if direction:
-		if _is_running:
-			velocity.x = direction * move_speed * run_multiplier
-		else:
-			velocity.x = direction * move_speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, move_speed)
-		
-	# Handle Ceiling, Walls and the gravity.
-	if is_on_ceiling:
-		velocity.y = gravity * delta
-	elif is_on_wall:
-		velocity.y = 0
-		if is_jump_pressed:
-			if sprite.flip_h:
-				velocity.x = wall_jump_horizontal
-			else:
-				velocity.x = -wall_jump_horizontal
-			velocity.y = jump_velocity
-	elif not is_on_floor:
-		velocity.y += gravity * delta
-			
-	# Clamp final velocities
-	velocity.x = clamp(velocity.x, -max_velocity.x, max_velocity.x)
-	velocity.y = clamp(velocity.y, -max_velocity.y, max_velocity.y)
-		
-	move_and_slide()
-		
-	var velocity_direction = velocity.normalized()		
-		
-	# Handle what state to use for animations
-	if _is_jumping:
-		_play_animation(\"Jump\")
-	elif velocity_direction.y == 1:
-		_is_falling = true
-		_is_running = false
-		_is_jumping = false
-		_duration_pressed = 0
-		_play_animation(\"Fall\")
-	elif (velocity.x != 0):
-		if _is_running:
-			_play_animation(\"Run\")
-		else:
-			_play_animation(\"Walk\")
-	else:
-		_is_falling = false
-		_is_jumping = false
-		_is_running = false
-		_duration_pressed = 0
-		_play_animation(\"Idle\")
-	
-	
-func _play_animation(name):
-	if name != animation_player.current_animation:
-		animation_player.play(name)
-"
+[ext_resource type="PackedScene" uid="uid://5b8lw2ip34va" path="res://Scripts/states/state_manager.tscn" id="3_isdhu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ufpm7"]
 size = Vector2(5, 8)
@@ -237,8 +114,7 @@ _data = {
 }
 
 [node name="testman" type="CharacterBody2D"]
-script = SubResource("GDScript_fccaw")
-move_speed = 25.0
+script = ExtResource("1_emtbk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_d5i26")
@@ -253,3 +129,5 @@ shape = SubResource("RectangleShape2D_ufpm7")
 libraries = {
 "": SubResource("AnimationLibrary_yub0u")
 }
+
+[node name="state_manager" parent="." instance=ExtResource("3_isdhu")]

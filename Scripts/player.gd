@@ -3,7 +3,8 @@ extends CharacterBody2D
 
 @export var gravity = 4
 
-@onready var animations = $animations
+@onready var animation_player = $AnimationPlayer
+@onready var sprite = $Sprite2D
 @onready var states = $state_manager
 
 func _ready() -> void:

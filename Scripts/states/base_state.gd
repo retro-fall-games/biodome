@@ -7,7 +7,7 @@ extends Node
 var player: Player
 
 func enter() -> void:
-	player.animations.play(animation_name)
+	player.animation_player.play(animation_name)
 
 func exit() -> void:
 	pass

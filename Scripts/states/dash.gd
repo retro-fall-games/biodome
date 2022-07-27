@@ -7,11 +7,11 @@ var dash_direction: int = 0
 
 # Upon entering the state, set dash direction to either current input or the direction the player is facing if no input is pressed
 func enter() -> void:
-	#.enter()
+	super.enter()
 	
 	current_dash_time = dash_time
 	
-	if player.animations.flip_h:
+	if player.sprite.flip_h:
 		dash_direction = -1
 	else:
 		dash_direction = 1
@@ -31,7 +31,7 @@ func process(delta: float) -> BaseState:
 	if current_dash_time > 0:
 		return null
 
-	if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
+	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 		if Input.is_action_pressed("run"):
 			return run_state
 		return walk_state

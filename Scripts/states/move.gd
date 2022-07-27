@@ -31,13 +31,13 @@ func physics_process(delta: float) -> BaseState:
 
 	var move = get_movement_input()
 	if move < 0:
-		player.animations.flip_h = true
+		player.sprite.flip_h = true
 	elif move > 0:
-		player.animations.flip_h = false
+		player.sprite.flip_h = false
 	
 	player.velocity.y += player.gravity
 	player.velocity.x = move * move_speed
-	# player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
+	player.move_and_slide()
 	
 	if move == 0:
 		return idle_state
@@ -45,9 +45,9 @@ func physics_process(delta: float) -> BaseState:
 	return null
 
 func get_movement_input() -> int:
-	if Input.is_action_pressed("move_left"):
+	if Input.is_action_pressed("left"):
 		return -1
-	elif Input.is_action_pressed("move_right"):
+	elif Input.is_action_pressed("right"):
 		return 1
 	
 	return 0

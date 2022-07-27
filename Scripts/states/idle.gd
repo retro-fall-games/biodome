@@ -13,7 +13,7 @@ extends BaseState
 @onready var dash_state: BaseState = get_node(dash_node)
 
 func enter() -> void:
-	# .enter()
+	super.enter()
 	player.velocity.x = 0
 
 func input(event: InputEvent) -> BaseState:
