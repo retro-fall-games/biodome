@@ -20,3 +20,20 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	states.process(delta)
+	
+func flip() -> void:
+	if(velocity.x > 0):
+		scale.x = scale.y * 1
+	elif(velocity.x < 0):
+		scale.x = scale.y * -1
+
+	
+func is_going_down_slope() -> bool:
+	var angle = get_floor_angle()
+	print(angle)
+	return angle > 0 and velocity.y > 0
+	
+func is_going_up_slope() -> bool:
+	var angle = get_floor_angle()
+	print(angle)
+	return angle > 0 and velocity.y <= 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://5b8lw2ip34va"]
+[gd_scene load_steps=12 format=3 uid="uid://5b8lw2ip34va"]
 
 [ext_resource type="Script" path="res://Scripts/states/state_manager.gd" id="1_42y3a"]
 [ext_resource type="Script" path="res://Scripts/states/dash.gd" id="2_buygv"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://Scripts/states/walk.gd" id="8_773hx"]
 [ext_resource type="Script" path="res://Scripts/states/wall_cling.gd" id="8_6277n"]
 [ext_resource type="Script" path="res://Scripts/states/wall_jump.gd" id="9_24fdc"]
+[ext_resource type="Script" path="res://Scripts/states/land.gd" id="10_82wvx"]
+[ext_resource type="Script" path="res://Scripts/states/jump_flip.gd" id="11_csopb"]
 
 [node name="state_manager" type="Node2D"]
 script = ExtResource("1_42y3a")
@@ -32,11 +34,13 @@ move_speed = 100.0
 run_node = NodePath("../Run")
 walk_node = NodePath("../Walk")
 idle_node = NodePath("../Idle")
+land_node = NodePath("../Land")
 wall_cling_node = NodePath("../WallCling")
 
 [node name="Idle" type="Node" parent="."]
 script = ExtResource("4_wrd8m")
 animation_name = "Idle"
+wait_on_enter = null
 jump_node = NodePath("../Jump")
 fall_node = NodePath("../Fall")
 walk_node = NodePath("../Walk")
@@ -46,7 +50,7 @@ dash_node = NodePath("../Dash")
 [node name="Jump" type="Node" parent="."]
 script = ExtResource("5_iokec")
 animation_name = "Jump"
-jump_force = 200.0
+jump_force = 100.0
 move_speed = 100.0
 fall_node = NodePath("../Fall")
 run_node = NodePath("../Run")
@@ -64,6 +68,7 @@ dash_node = NodePath("../Dash")
 idle_node = NodePath("../Idle")
 walk_node = NodePath("../Walk")
 run_node = NodePath(".")
+jump_flip_node = NodePath("../JumpFlip")
 
 [node name="Walk" type="Node" parent="."]
 script = ExtResource("8_773hx")
@@ -85,7 +90,31 @@ wall_jump_node = NodePath("../WallJump")
 
 [node name="WallJump" type="Node" parent="."]
 script = ExtResource("9_24fdc")
+animation_name = "WallJump"
+jump_force = 150.0
+move_speed = 100.0
 fall_node = NodePath("../Fall")
 run_node = NodePath("../Run")
 walk_node = NodePath("../Walk")
 idle_node = NodePath("../Idle")
+
+[node name="Land" type="Node" parent="."]
+script = ExtResource("10_82wvx")
+animation_name = "Land"
+jump_node = NodePath("../Jump")
+fall_node = NodePath("../Fall")
+walk_node = NodePath("../Walk")
+run_node = NodePath("../Run")
+dash_node = NodePath("../Dash")
+idle_node = NodePath("../Idle")
+
+[node name="JumpFlip" type="Node" parent="."]
+script = ExtResource("11_csopb")
+animation_name = "JumpFlip"
+jump_force = 150.0
+move_speed = 150.0
+fall_node = NodePath("../Fall")
+run_node = NodePath("../Run")
+walk_node = NodePath("../Walk")
+idle_node = NodePath("../Idle")
+wall_cling_node = NodePath("../WallCling")

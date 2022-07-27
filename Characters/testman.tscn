@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://l7qf85gbbdpf"]
+[gd_scene load_steps=16 format=3 uid="uid://l7qf85gbbdpf"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_emtbk"]
 [ext_resource type="Texture2D" uid="uid://c8wkn1pq25qx6" path="res://Art/Testman Platformer Pack/testman/testman-Sheet.png" id="2_d5i26"]
@@ -10,6 +10,7 @@ size = Vector2(5, 8)
 [sub_resource type="Animation" id="Animation_ifk8u"]
 resource_name = "Fall"
 length = 0.2
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -103,14 +104,80 @@ tracks/0/keys = {
 "values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_0yv1a"]
+resource_name = "Land"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 7), Vector2i(1, 7), Vector2i(2, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_2c01q"]
+resource_name = "WallCling"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.003491, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(0, 16), Vector2i(1, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_3qn1g"]
+resource_name = "WallJump"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 17), Vector2i(1, 17), Vector2i(2, 17)]
+}
+
+[sub_resource type="Animation" id="Animation_7p1h5"]
+resource_name = "JumpFlip"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 23), Vector2i(1, 23), Vector2i(2, 23), Vector2i(3, 23), Vector2i(4, 23), Vector2i(5, 23)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yub0u"]
 _data = {
 "Fall": SubResource("Animation_ifk8u"),
 "Idle": SubResource("Animation_8j7fk"),
 "Jump": SubResource("Animation_fwbgv"),
+"JumpFlip": SubResource("Animation_7p1h5"),
+"Land": SubResource("Animation_0yv1a"),
 "RESET": SubResource("Animation_5goap"),
 "Run": SubResource("Animation_olp2h"),
-"Walk": SubResource("Animation_8n86v")
+"Walk": SubResource("Animation_8n86v"),
+"WallCling": SubResource("Animation_2c01q"),
+"WallJump": SubResource("Animation_3qn1g")
 }
 
 [node name="testman" type="CharacterBody2D"]

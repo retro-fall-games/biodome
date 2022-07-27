@@ -8,7 +8,7 @@ var player: Player
 
 func enter() -> void:
 	player.animation_player.play(animation_name)
-
+	
 func exit() -> void:
 	pass
 
