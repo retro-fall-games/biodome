@@ -14,7 +14,7 @@ extends BaseState
 
 func enter() -> void:
 	super.enter()
-	player.velocity.x = 0
+	character.reset_x_velocity()
 
 func input(event: InputEvent) -> BaseState:
 	if Input.is_action_just_pressed("left") or Input.is_action_just_pressed("right"):
@@ -28,8 +28,8 @@ func input(event: InputEvent) -> BaseState:
 	return null
 
 func physics_process(delta: float) -> BaseState:
-	player.velocity.y += player.gravity
-	player.move_and_slide()
-	if not player.is_on_floor():
+	character.apply_gravity()
+	character.move()
+	if not character.is_on_floor():
 		return fall_state
 	return null

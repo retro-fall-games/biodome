@@ -12,22 +12,28 @@ _global_script_classes=[{
 "base": "Node",
 "class": &"BaseState",
 "language": &"GDScript",
-"path": "res://Scripts/states/base_state.gd"
+"path": "res://Scripts/Character/states/base_state.gd"
+}, {
+"base": "CharacterBody2D",
+"class": &"Character",
+"language": &"GDScript",
+"path": "res://Scripts/Character/character.gd"
+}, {
+"base": "MoveState",
+"class": &"JumpState",
+"language": &"GDScript",
+"path": "res://Scripts/Character/states/jump.gd"
 }, {
 "base": "BaseState",
 "class": &"MoveState",
 "language": &"GDScript",
-"path": "res://Scripts/states/move.gd"
-}, {
-"base": "CharacterBody2D",
-"class": &"Player",
-"language": &"GDScript",
-"path": "res://Scripts/player.gd"
+"path": "res://Scripts/Character/states/move.gd"
 }]
 _global_script_class_icons={
 "BaseState": "",
-"MoveState": "",
-"Player": ""
+"Character": "",
+"JumpState": "",
+"MoveState": ""
 }
 
 [application]
@@ -36,6 +42,11 @@ config/name="Biodome"
 run/main_scene="res://Levels/game_level.tscn"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
 config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://Scripts/Autoload/global.gd"
+PlayerVariables="*res://Scripts/Autoload/player_variables.gd"
 
 [display]
 

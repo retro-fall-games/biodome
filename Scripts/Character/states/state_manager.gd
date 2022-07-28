@@ -14,9 +14,9 @@ func change_state(new_state: BaseState) -> void:
 # Initialize the state machine by giving each state a reference to the objects
 # owned by the parent that they should be able to take control of
 # and set a default state
-func init(player: Player) -> void:
+func init(character: Character) -> void:
 	for child in get_children():
-		child.player = player
+		child.character = character
 
 	# Initialize with a default state of idle
 	change_state(get_node(starting_state))

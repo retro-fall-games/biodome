@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt1e23maxgp5n"]
+
+[ext_resource type="Script" path="res://Items/coin.gd" id="1_8ggs5"]
+[ext_resource type="Texture2D" uid="uid://b7vnj7eea4oyt" path="res://Art/Testman Platformer Pack/items/Coin-Sheet.png" id="1_sxq1p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ca51d"]
+size = Vector2(10, 16)
+
+[node name="Coin" type="Area2D"]
+script = ExtResource("1_8ggs5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ca51d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sxq1p")
+hframes = 4
+
+[connection signal="body_entered" from="." to="." method="_on_coin_body_entered"]

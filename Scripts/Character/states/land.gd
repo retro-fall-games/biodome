@@ -39,9 +39,9 @@ func physics_process(delta: float) -> BaseState:
 	if _process_timer(delta):
 		return idle_state
 		
-	player.velocity.y += player.gravity
-	player.move_and_slide()
-	if not player.is_on_floor():
+	character.apply_gravity()
+	character.move()
+	if not character.is_on_floor():
 		return fall_state
 		
 	return null

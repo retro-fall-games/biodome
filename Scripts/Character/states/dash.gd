@@ -11,7 +11,7 @@ func enter() -> void:
 	
 	current_dash_time = dash_time
 	
-	if player.sprite.flip_h:
+	if character.velocity.x < 0:
 		dash_direction = -1
 	else:
 		dash_direction = 1

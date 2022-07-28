@@ -3,11 +3,11 @@ extends Node
 
 @export var animation_name: String
 
-# Pass in a reference to the player's kinematic body so that it can be used by the state
-var player: Player
+# Pass in a reference to the character's kinematic body so that it can be used by the state
+var character: Character
 
 func enter() -> void:
-	player.animation_player.play(animation_name)
+	character.animation_player.play(animation_name)
 	
 func exit() -> void:
 	pass

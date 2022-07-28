@@ -9,6 +9,8 @@ extends BaseState
 @export var idle_node: NodePath
 @export var walk_node: NodePath
 @export var run_node: NodePath
+@export var wall_cling_node: NodePath
+@export var wall_jump_node: NodePath
 
 @onready var jump_state: BaseState = get_node(jump_node)
 @onready var jump_flip_state: BaseState = get_node(jump_flip_node)
@@ -17,46 +19,32 @@ extends BaseState
 @onready var dash_state: BaseState = get_node(dash_node)
 @onready var walk_state: BaseState = get_node(walk_node)
 @onready var run_state: BaseState = get_node(run_node)
+@onready var wall_cling_state: BaseState = get_node(wall_cling_node)
+@onready var wall_jump_state: BaseState = get_node(wall_jump_node)
 
-const FLOOR_NORMAL = Vector2.UP
-const SNAP_DIRECTION = Vector2.DOWN
-const SNAP_LENGTH = 32
-
-var snap_vector = SNAP_DIRECTION * SNAP_LENGTH
+var movement_input = 0
 
 func input(event: InputEvent) -> BaseState:
 	if Input.is_action_just_pressed("jump"):
 		return jump_state
-	
 	if Input.is_action_just_pressed("dash"):
 		return dash_state
-
 	return null
 
 func physics_process(delta: float) -> BaseState:
-	if !player.is_on_floor():
+	if !character.is_on_floor():
 		return fall_state
 
-	var move = get_movement_input()
-	#if move < 0:
-	#	player.sprite.flip_h = true
-	#elif move > 0:
-	#	player.sprite.flip_h = false
-	
-	player.velocity.y += player.gravity
-	player.velocity.x = move * move_speed
-	player.move_and_slide()
-	player.flip()
+	move()
 
-	if move == 0:
+	if movement_input == 0:
 		return idle_state
 	else:
-		if player.is_going_down_slope():
+		if character.is_going_down_slope():
 			print("Down Slope")
-		elif player.is_going_up_slope():
+		elif character.is_going_up_slope():
 			print("Up Slope")
-	
-
+			
 	return null
 
 func get_movement_input() -> int:
@@ -64,5 +52,16 @@ func get_movement_input() -> int:
 		return -1
 	elif Input.is_action_pressed("right"):
 		return 1
-	
 	return 0
+	
+func move():
+	movement_input = get_movement_input()	
+	character.apply_gravity()
+	character.set_force_x(movement_input * move_speed)
+	character.move()
+	
+func move_snap():
+	movement_input = get_movement_input()	
+	character.apply_gravity()
+	character.set_force_x(movement_input * move_speed)
+	character.move_snap()
