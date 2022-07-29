@@ -31,12 +31,12 @@ func _process(delta: float) -> void:
 	
 func is_going_down_slope() -> bool:
 	var angle = get_floor_angle()
-	print(angle)
+	# print(angle)
 	return angle > 0 and velocity.y > 0
 	
 func is_going_up_slope() -> bool:
 	var angle = get_floor_angle()
-	print(angle)
+	# print(angle)
 	return angle > 0 and velocity.y <= 0
 
 func reset_velocity() -> void:
