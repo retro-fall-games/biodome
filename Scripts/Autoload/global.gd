@@ -1,6 +1,7 @@
 extends Node
 
 var current_scene = null
+var spawn_point = Vector2(0, 0)
 
 func _ready():
 	var root = get_tree().get_root()
@@ -35,3 +36,6 @@ func _deferred_goto_scene(path):
 
 	# Optionally, to make it compatible with the SceneTree.change_scene() API.
 	get_tree().set_current_scene(current_scene)
+	
+func update_spawn(new_point):
+	spawn_point = new_point

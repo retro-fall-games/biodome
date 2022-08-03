@@ -13,12 +13,18 @@ signal health_changed(old_value, new_value)
 
 var health = 10
 var _default_gravity = 0
+var primary_spawn
 
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
 	# that way they can move and react accordingly
 	states.init(self)
 	_default_gravity = gravity
+	primary_spawn = get_parent().get_node("PrimarySpawn")
+	if (primary_spawn):
+		self.position = primary_spawn.position
+	else:
+		print("No primary spawn")
 
 func _unhandled_input(event: InputEvent) -> void:
 	states.input(event)

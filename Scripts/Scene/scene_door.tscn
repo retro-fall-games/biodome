@@ -1,13 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhvswqdr1acav"]
+[gd_scene load_steps=4 format=3 uid="uid://dhvswqdr1acav"]
 
 [ext_resource type="Script" path="res://Scripts/Scene/scene_door.gd" id="1_db48w"]
+[ext_resource type="Texture2D" uid="uid://cvs2tqb8h0k28" path="res://Art/Testman Platformer Pack/buildings/door.png" id="2_n3m21"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_60n2j"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hdqw2"]
+size = Vector2(32, 32)
 
 [node name="SceneDoor" type="Area2D"]
 script = ExtResource("1_db48w")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_n3m21")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_60n2j")
+shape = SubResource("RectangleShape2D_hdqw2")
 
 [connection signal="body_entered" from="." to="." method="_on_scene_door_body_entered"]

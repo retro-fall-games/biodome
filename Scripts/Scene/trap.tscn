@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpah63q3fog5l"]
+
+[ext_resource type="Script" path="res://Scripts/Scene/trap.gd" id="1_uv6fi"]
+[ext_resource type="Texture2D" uid="uid://c21670ta2kdxl" path="res://Art/Testman Platformer Pack/textures/black_texture.png" id="2_7dsik"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rkfq8"]
+
+[node name="Trap" type="Area2D"]
+script = ExtResource("1_uv6fi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rkfq8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_7dsik")
+
+[connection signal="body_entered" from="." to="." method="_on_trap_body_entered"]
