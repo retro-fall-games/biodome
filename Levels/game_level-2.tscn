@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cid5fm8ms1b0m"]
+[gd_scene load_steps=9 format=3 uid="uid://cid5fm8ms1b0m"]
 
 [ext_resource type="Texture2D" uid="uid://dm824i4rck5oq" path="res://Art/Testman Platformer Pack/tiles/platformer-grass-dirt-tiles.png" id="1_w4e3e"]
 [ext_resource type="PackedScene" uid="uid://dpf68fr8vs0av" path="res://Characters/player.tscn" id="2_cp8cd"]
 [ext_resource type="Texture2D" uid="uid://mq6vu1d6lf6r" path="res://Art/Testman Platformer Pack/tiles/background.png" id="3_wfnj1"]
 [ext_resource type="Texture2D" uid="uid://dtqm2t85dmgw2" path="res://Art/Testman Platformer Pack/tiles/clouds.png" id="4_r2miy"]
 [ext_resource type="PackedScene" uid="uid://bfjvwkupe2sjr" path="res://Scripts/Scene/spawn.tscn" id="6_kjpb8"]
+[ext_resource type="PackedScene" uid="uid://dhvswqdr1acav" path="res://Scripts/Scene/scene_door.tscn" id="6_l72yu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r0qj2"]
 texture = ExtResource("1_w4e3e")
@@ -261,3 +262,7 @@ remote_path = NodePath("../../Camera2D")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(19, -73)
 current = true
+
+[node name="SceneDoor" parent="." instance=ExtResource("6_l72yu")]
+position = Vector2(-186, -50)
+scene = "res://Levels/game_level.tscn"

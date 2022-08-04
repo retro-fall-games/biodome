@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b2wdxr46v7tps"]
+[gd_scene load_steps=11 format=3 uid="uid://b2wdxr46v7tps"]
 
 [ext_resource type="Texture2D" uid="uid://dm824i4rck5oq" path="res://Art/Testman Platformer Pack/tiles/platformer-grass-dirt-tiles.png" id="1_2bxu7"]
 [ext_resource type="PackedScene" uid="uid://dpf68fr8vs0av" path="res://Characters/player.tscn" id="2_sh686"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://dtqm2t85dmgw2" path="res://Art/Testman Platformer Pack/tiles/clouds.png" id="4_bpb5w"]
 [ext_resource type="PackedScene" uid="uid://dt1e23maxgp5n" path="res://Items/coin.tscn" id="5_sdlov"]
 [ext_resource type="PackedScene" uid="uid://dhvswqdr1acav" path="res://Scripts/Scene/scene_door.tscn" id="6_dcrip"]
-[ext_resource type="PackedScene" uid="uid://cid5fm8ms1b0m" path="res://Levels/game_level-2.tscn" id="7_ofs32"]
 [ext_resource type="PackedScene" uid="uid://bfjvwkupe2sjr" path="res://Scripts/Scene/spawn.tscn" id="8_8tdis"]
 [ext_resource type="PackedScene" uid="uid://bpah63q3fog5l" path="res://Scripts/Scene/trap.tscn" id="9_cme6p"]
 
@@ -277,7 +276,7 @@ position = Vector2(192, 66)
 
 [node name="SceneDoor" parent="." instance=ExtResource("6_dcrip")]
 position = Vector2(-489, -2)
-scene = ExtResource("7_ofs32")
+scene = "res://Levels/game_level-2.tscn"
 
 [node name="PrimarySpawn" parent="." instance=ExtResource("8_8tdis")]
 position = Vector2(266, 73)
