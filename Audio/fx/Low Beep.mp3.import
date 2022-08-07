@@ -1,0 +1,16 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c6cp0lf6gc6dy"
+path="res://.godot/imported/Low Beep.mp3-bd4f7b42126a22b3854b6b90451f36d2.mp3str"
+
+[deps]
+
+source_file="res://Audio/fx/Low Beep.mp3"
+dest_files=["res://.godot/imported/Low Beep.mp3-bd4f7b42126a22b3854b6b90451f36d2.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,16 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://253arjt3u4p7"
+path="res://.godot/imported/Alien Hover.mp3-727c365c239255cb28d4bcc3cdfaed93.mp3str"
+
+[deps]
+
+source_file="res://Audio/fx/Alien Hover.mp3"
+dest_files=["res://.godot/imported/Alien Hover.mp3-727c365c239255cb28d4bcc3cdfaed93.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0

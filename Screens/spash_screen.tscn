@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccm3otq1tdv8y"]
+[gd_scene load_steps=6 format=3 uid="uid://ccm3otq1tdv8y"]
 
 [ext_resource type="Texture2D" uid="uid://b3guihmcntucq" path="res://Art/Testman Platformer Pack/logos/bio.png" id="1_266lh"]
 [ext_resource type="Script" path="res://Screens/spash_screen.gd" id="1_ptt8v"]
+[ext_resource type="PackedScene" uid="uid://ddtxrylx2l6p5" path="res://Scripts/Transitions/transition_screen.tscn" id="3_at5eq"]
 
 [sub_resource type="Animation" id="Animation_lsd6n"]
 resource_name = "DoSplash"
@@ -49,14 +50,16 @@ script = ExtResource("1_ptt8v")
 scene = "res://Menus/main_menu.tscn"
 
 [node name="Bio" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(154, 88.5)
+position = Vector2(154, -30)
 texture = ExtResource("1_266lh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "DoSplash"
 libraries = {
 "": SubResource("AnimationLibrary_qnwfr")
 }
 
+[node name="TransitionScreen" parent="." instance=ExtResource("3_at5eq")]
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="fade_in_finished" from="TransitionScreen" to="." method="_on_transition_screen_fade_in_finished"]
+[connection signal="fade_out_finished" from="TransitionScreen" to="." method="_on_transition_screen_fade_out_finished"]

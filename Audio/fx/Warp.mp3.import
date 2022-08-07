@@ -1,0 +1,16 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bsaf4ygpk62y5"
+path="res://.godot/imported/Warp.mp3-10381c00527e34a44f16fdd8d6f59ae1.mp3str"
+
+[deps]
+
+source_file="res://Audio/fx/Warp.mp3"
+dest_files=["res://.godot/imported/Warp.mp3-10381c00527e34a44f16fdd8d6f59ae1.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0

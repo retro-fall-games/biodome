@@ -49,6 +49,10 @@ run/main_scene="res://Levels/game_level.tscn"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
 config/icon="res://icon.png"
 
+[audio]
+
+buses/default_bus_layout="res://Audio/default_bus_layout.tres"
+
 [autoload]
 
 Global="*res://Scripts/Autoload/global.gd"
