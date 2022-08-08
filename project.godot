@@ -58,6 +58,7 @@ buses/default_bus_layout="res://Audio/default_bus_layout.tres"
 Global="*res://Scripts/Autoload/global.gd"
 PlayerVariables="*res://Scripts/Autoload/player_variables.gd"
 Pause="*res://Scripts/Autoload/pause.tscn"
+Guikeybinding="*res://Scripts/UI/guikeybinding.gd"
 
 [display]
 
@@ -66,6 +67,10 @@ window/size/viewport_height=180
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
+
+[gui]
+
+theme/custom="res://Themes/default_theme.tres"
 
 [input]
 
@@ -112,5 +117,5 @@ pause={
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+driver/driver_name="opengl3"
 textures/canvas_textures/default_texture_filter=0

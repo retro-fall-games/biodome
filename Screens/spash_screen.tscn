@@ -1,8 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccm3otq1tdv8y"]
+[gd_scene load_steps=7 format=3 uid="uid://ccm3otq1tdv8y"]
 
 [ext_resource type="Texture2D" uid="uid://b3guihmcntucq" path="res://Art/Testman Platformer Pack/logos/bio.png" id="1_266lh"]
 [ext_resource type="Script" path="res://Screens/spash_screen.gd" id="1_ptt8v"]
 [ext_resource type="PackedScene" uid="uid://ddtxrylx2l6p5" path="res://Scripts/Transitions/transition_screen.tscn" id="3_at5eq"]
+
+[sub_resource type="Environment" id="Environment_5kprl"]
+background_color = Color(0.686275, 0.341176, 0.360784, 1)
+glow_levels/1 = 4.99
+glow_levels/2 = 4.65
+glow_intensity = 2.98
+glow_strength = 1.16
+glow_bloom = 0.71
+glow_blend_mode = 0
+glow_hdr_threshold = 1.73
+glow_hdr_scale = 2.77
 
 [sub_resource type="Animation" id="Animation_lsd6n"]
 resource_name = "DoSplash"
@@ -49,7 +60,11 @@ _data = {
 script = ExtResource("1_ptt8v")
 scene = "res://Menus/main_menu.tscn"
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5kprl")
+
 [node name="Bio" type="Sprite2D" parent="."]
+modulate = Color(0.706667, 0.2, 1, 1)
 position = Vector2(154, -30)
 texture = ExtResource("1_266lh")
 
