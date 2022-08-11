@@ -1,0 +1,16 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bnlugbxbjeoav"
+path="res://.godot/imported/Laser Blips.mp3-86402c6a80034183f5c0c52d28b78495.mp3str"
+
+[deps]
+
+source_file="res://Demo/Audio/fx/Laser Blips.mp3"
+dest_files=["res://.godot/imported/Laser Blips.mp3-86402c6a80034183f5c0c52d28b78495.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0

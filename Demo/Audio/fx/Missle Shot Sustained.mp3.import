@@ -1,0 +1,16 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bs6lxdrelivtc"
+path="res://.godot/imported/Missle Shot Sustained.mp3-25f98150ab6f18bfe5eb2066b1aab73e.mp3str"
+
+[deps]
+
+source_file="res://Demo/Audio/fx/Missle Shot Sustained.mp3"
+dest_files=["res://.godot/imported/Missle Shot Sustained.mp3-25f98150ab6f18bfe5eb2066b1aab73e.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0

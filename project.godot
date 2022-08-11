@@ -12,27 +12,27 @@ _global_script_classes=[{
 "base": "Node",
 "class": &"BaseState",
 "language": &"GDScript",
-"path": "res://Scripts/Character/states/base_state.gd"
+"path": "res://RFG/Platformer/Character/states/base_state.gd"
 }, {
 "base": "CharacterBody2D",
 "class": &"Character",
 "language": &"GDScript",
-"path": "res://Scripts/Character/character.gd"
+"path": "res://RFG/Platformer/Character/character.gd"
 }, {
 "base": "MoveState",
 "class": &"JumpState",
 "language": &"GDScript",
-"path": "res://Scripts/Character/states/jump.gd"
+"path": "res://RFG/Platformer/Character/states/jump.gd"
 }, {
 "base": "BaseState",
 "class": &"MoveState",
 "language": &"GDScript",
-"path": "res://Scripts/Character/states/move.gd"
+"path": "res://RFG/Platformer/Character/states/move.gd"
 }, {
 "base": "Area2D",
 "class": &"Spawn",
 "language": &"GDScript",
-"path": "res://Scripts/Scene/spawn.gd"
+"path": "res://RFG/Scene/spawn.gd"
 }]
 _global_script_class_icons={
 "BaseState": "",
@@ -45,20 +45,20 @@ _global_script_class_icons={
 [application]
 
 config/name="Biodome"
-run/main_scene="res://Levels/game_level.tscn"
+run/main_scene="res://Demo/Platformer/Levels/level_1.tscn"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
 config/icon="res://icon.png"
 
 [audio]
 
-buses/default_bus_layout="res://Audio/default_bus_layout.tres"
+buses/default_bus_layout="res://Demo/Audio/default_bus_layout.tres"
 
 [autoload]
 
-Global="*res://Scripts/Autoload/global.gd"
-PlayerVariables="*res://Scripts/Autoload/player_variables.gd"
-Pause="*res://Scripts/Autoload/pause.tscn"
-Guikeybinding="*res://Scripts/UI/guikeybinding.gd"
+Global="*res://RFG/Autoload/global.gd"
+PlayerVariables="*res://RFG/Autoload/player_variables.gd"
+Pause="*res://RFG/Autoload/pause.tscn"
+Guikeybinding="*res://RFG/UI/guikeybinding.gd"
 
 [display]
 
@@ -70,7 +70,7 @@ window/stretch/mode="canvas_items"
 
 [gui]
 
-theme/custom="res://Themes/default_theme.tres"
+theme/custom="res://RFG/Themes/default_theme.tres"
 
 [input]
 

@@ -1,0 +1,16 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://beor2l4shi2qo"
+path="res://.godot/imported/Helicopter.mp3-28d06edb254a3bc95870f6243c66763f.mp3str"
+
+[deps]
+
+source_file="res://Demo/Audio/fx/Helicopter.mp3"
+dest_files=["res://.godot/imported/Helicopter.mp3-28d06edb254a3bc95870f6243c66763f.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0

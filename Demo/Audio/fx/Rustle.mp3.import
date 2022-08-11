@@ -1,0 +1,16 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bhatxxxp4x4q"
+path="res://.godot/imported/Rustle.mp3-9edea8b3c5ac95edf13bba32eada6518.mp3str"
+
+[deps]
+
+source_file="res://Demo/Audio/fx/Rustle.mp3"
+dest_files=["res://.godot/imported/Rustle.mp3-9edea8b3c5ac95edf13bba32eada6518.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0

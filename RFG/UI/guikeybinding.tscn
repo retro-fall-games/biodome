@@ -1,0 +1,124 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://RFG/UI/guikeybinding.gd" id="1_l2fsa"]
+[ext_resource type="PackedScene" path="res://RFG/UI/btnparent.tscn" id="2_uuu84"]
+
+[node name="guikeybinding" type="CanvasLayer"]
+script = ExtResource("1_l2fsa")
+back_scene = "res://Menus/options_menu.tscn"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.5
+offset_top = -80.0
+offset_right = 53.5
+offset_bottom = 80.0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+offset_right = 107.0
+offset_bottom = 134.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+columns = 2
+
+[node name="Label4" type="Label" parent="VBoxContainer/GridContainer"]
+offset_top = 2.0
+offset_right = 61.0
+offset_bottom = 19.0
+text = "Move Up
+"
+
+[node name="btnparent4" parent="VBoxContainer/GridContainer" instance=ExtResource("2_uuu84")]
+offset_left = 67.0
+offset_right = 107.0
+offset_bottom = 22.0
+text = "W"
+action_name = "up"
+
+[node name="Label2" type="Label" parent="VBoxContainer/GridContainer"]
+offset_top = 30.0
+offset_right = 61.0
+offset_bottom = 47.0
+text = "Move Left
+"
+
+[node name="btnparent2" parent="VBoxContainer/GridContainer" instance=ExtResource("2_uuu84")]
+offset_left = 67.0
+offset_top = 28.0
+offset_right = 107.0
+offset_bottom = 50.0
+text = "A"
+action_name = "left"
+
+[node name="Label5" type="Label" parent="VBoxContainer/GridContainer"]
+offset_top = 58.0
+offset_right = 61.0
+offset_bottom = 75.0
+text = "Move Down
+"
+
+[node name="btnparent5" parent="VBoxContainer/GridContainer" instance=ExtResource("2_uuu84")]
+offset_left = 67.0
+offset_top = 56.0
+offset_right = 107.0
+offset_bottom = 78.0
+text = "S"
+action_name = "down"
+
+[node name="Label3" type="Label" parent="VBoxContainer/GridContainer"]
+offset_top = 86.0
+offset_right = 61.0
+offset_bottom = 103.0
+text = "Move Right
+"
+
+[node name="btnparent3" parent="VBoxContainer/GridContainer" instance=ExtResource("2_uuu84")]
+offset_left = 67.0
+offset_top = 84.0
+offset_right = 107.0
+offset_bottom = 106.0
+text = "D"
+action_name = "right"
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer"]
+offset_top = 114.0
+offset_right = 61.0
+offset_bottom = 131.0
+text = "Jump
+"
+
+[node name="btnparent" parent="VBoxContainer/GridContainer" instance=ExtResource("2_uuu84")]
+offset_left = 67.0
+offset_top = 112.0
+offset_right = 107.0
+offset_bottom = 134.0
+action_name = "jump"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+offset_top = 138.0
+offset_right = 107.0
+offset_bottom = 160.0
+text = "Back"
+
+[node name="Overlay" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.180392, 0.180392, 0.180392, 0.890196)
+
+[node name="Label" type="Label" parent="Overlay"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -8.5
+offset_right = 69.0
+offset_bottom = 8.5
+text = "Please press the new key"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

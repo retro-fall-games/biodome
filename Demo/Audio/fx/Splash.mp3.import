@@ -1,0 +1,16 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://8t5f1hjboks1"
+path="res://.godot/imported/Splash.mp3-de87d63b7cbcc81bde70ef164aabc17d.mp3str"
+
+[deps]
+
+source_file="res://Demo/Audio/fx/Splash.mp3"
+dest_files=["res://.godot/imported/Splash.mp3-de87d63b7cbcc81bde70ef164aabc17d.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,16 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cp33alcbnokjj"
+path="res://.godot/imported/Siren.mp3-3360009cbb3f87a3afc2e9b6cc954fbc.mp3str"
+
+[deps]
+
+source_file="res://Demo/Audio/fx/Siren.mp3"
+dest_files=["res://.godot/imported/Siren.mp3-3360009cbb3f87a3afc2e9b6cc954fbc.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,16 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cyknuejxnqaxr"
+path="res://.godot/imported/Engine Swell.mp3-1750c2f4323fab01001202bf323e19d4.mp3str"
+
+[deps]
+
+source_file="res://Demo/Audio/fx/Engine Swell.mp3"
+dest_files=["res://.godot/imported/Engine Swell.mp3-1750c2f4323fab01001202bf323e19d4.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0

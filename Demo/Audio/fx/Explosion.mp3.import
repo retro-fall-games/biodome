@@ -1,0 +1,16 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d3ei3qc75iql6"
+path="res://.godot/imported/Explosion.mp3-91cc165518202e3e67de1ff37eb5c3ac.mp3str"
+
+[deps]
+
+source_file="res://Demo/Audio/fx/Explosion.mp3"
+dest_files=["res://.godot/imported/Explosion.mp3-91cc165518202e3e67de1ff37eb5c3ac.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0

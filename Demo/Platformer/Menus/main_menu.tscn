@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Demo/Platformer/Menus/main_menu.gd" id="1_sspc7"]
+[ext_resource type="Theme" path="res://RFG/Themes/default_theme.tres" id="2_tjsic"]
+[ext_resource type="PackedScene" path="res://RFG/Transitions/transition_screen.tscn" id="3_kdq88"]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_sspc7")
+start_scene_path = "res://Levels/game_level.tscn"
+options_scene_path = "res://Menus/options_menu.tscn"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -50.5
+offset_right = 35.0
+offset_bottom = 50.5
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+offset_right = 70.0
+offset_bottom = 17.0
+theme = ExtResource("2_tjsic")
+text = "Biodome"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+offset_top = 21.0
+offset_right = 70.0
+offset_bottom = 43.0
+focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../OptionsButton")
+theme = ExtResource("2_tjsic")
+text = "Start"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+offset_top = 47.0
+offset_right = 70.0
+offset_bottom = 69.0
+focus_neighbor_top = NodePath("../StartButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+theme = ExtResource("2_tjsic")
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+offset_top = 73.0
+offset_right = 70.0
+offset_bottom = 95.0
+focus_neighbor_top = NodePath("../OptionsButton")
+focus_neighbor_bottom = NodePath("../StartButton")
+theme = ExtResource("2_tjsic")
+text = "Quit"
+
+[node name="TransitionScreen" parent="." instance=ExtResource("3_kdq88")]
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="fade_in_finished" from="TransitionScreen" to="." method="_on_transition_screen_fade_in_finished"]
+[connection signal="fade_out_finished" from="TransitionScreen" to="." method="_on_transition_screen_fade_out_finished"]

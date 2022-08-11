@@ -1,0 +1,16 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dpb2j8mppsd6w"
+path="res://.godot/imported/Engine Rev Sustain.mp3-530f262d951ec91b51d4d6a6a24162fb.mp3str"
+
+[deps]
+
+source_file="res://Demo/Audio/fx/Engine Rev Sustain.mp3"
+dest_files=["res://.godot/imported/Engine Rev Sustain.mp3-530f262d951ec91b51d4d6a6a24162fb.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0

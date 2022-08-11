@@ -1,0 +1,16 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ba6v8cr7iphk3"
+path="res://.godot/imported/Burn.mp3-384b92ebb6c62f8dcec0bc82af2787b0.mp3str"
+
+[deps]
+
+source_file="res://Demo/Audio/fx/Burn.mp3"
+dest_files=["res://.godot/imported/Burn.mp3-384b92ebb6c62f8dcec0bc82af2787b0.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0

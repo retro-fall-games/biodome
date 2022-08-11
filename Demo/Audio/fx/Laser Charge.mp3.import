@@ -1,0 +1,16 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ce3471akjp1vn"
+path="res://.godot/imported/Laser Charge.mp3-21c4d1dc8ce3759c095e44835be845a0.mp3str"
+
+[deps]
+
+source_file="res://Demo/Audio/fx/Laser Charge.mp3"
+dest_files=["res://.godot/imported/Laser Charge.mp3-21c4d1dc8ce3759c095e44835be845a0.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0

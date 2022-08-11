@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://eaq1ir8nikla"]
-
-[ext_resource type="Script" path="res://Scripts/UI/btnparent.gd" id="1_udkwh"]
-
-[node name="btnparent" type="Button"]
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Space"
-script = ExtResource("1_udkwh")
