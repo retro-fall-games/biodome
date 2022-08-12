@@ -1,7 +1,7 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=16 format=3 uid="uid://c7axsdu1qdcg5"]
 
 [ext_resource type="Script" path="res://RFG/Platformer/Character/character.gd" id="1_emtbk"]
-[ext_resource type="Texture2D" path="res://Demo/Art/Testman Platformer Pack/testman/testman-Sheet.png" id="2_d5i26"]
+[ext_resource type="Texture2D" uid="uid://c8wkn1pq25qx6" path="res://Demo/Art/Testman Platformer Pack/testman/testman-Sheet.png" id="2_d5i26"]
 [ext_resource type="PackedScene" path="res://RFG/Platformer/Character/states/state_manager.tscn" id="3_isdhu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ufpm7"]

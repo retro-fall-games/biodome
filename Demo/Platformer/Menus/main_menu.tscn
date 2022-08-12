@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://bbn4oi74fn526"]
 
 [ext_resource type="Script" path="res://Demo/Platformer/Menus/main_menu.gd" id="1_sspc7"]
 [ext_resource type="Theme" path="res://RFG/Themes/default_theme.tres" id="2_tjsic"]
-[ext_resource type="PackedScene" path="res://RFG/Transitions/transition_screen.tscn" id="3_kdq88"]
+[ext_resource type="PackedScene" uid="uid://lf04i4egw1rn" path="res://RFG/Transitions/transition_screen.tscn" id="3_kdq88"]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
