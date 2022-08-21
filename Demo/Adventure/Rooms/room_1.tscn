@@ -16,3 +16,8 @@ position = Vector2(67, 36)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[node name="Bounds" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bounds"]
+polygon = PackedVector2Array(159, 19, 156, 32, 133, 30, 134, 18, 121, 20, 74, 30, 28, 43, 23, 50, 33, 57, 60, 62, 104, 68, 162, 97, 137, 98, -26, 94, -23, 18, 139, 3, 161, 6)
