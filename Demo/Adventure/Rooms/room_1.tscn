@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://brjnx8bw8qgx3"]
+[gd_scene load_steps=4 format=3 uid="uid://brjnx8bw8qgx3"]
 
 [ext_resource type="Texture2D" uid="uid://d0dbdxtsqotmu" path="res://Demo/Adventure/Rooms/Intro.png" id="1_g8w3s"]
 [ext_resource type="PackedScene" uid="uid://ba1twmy8xyxlk" path="res://Demo/Adventure/Characters/Darl/darl.tscn" id="2_qw026"]
+[ext_resource type="PackedScene" uid="uid://cithk3qj601s1" path="res://Demo/Adventure/TextParser/text_parser.tscn" id="3_a40l4"]
 
 [node name="Level1" type="Node2D"]
 
@@ -21,3 +22,6 @@ current = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bounds"]
 polygon = PackedVector2Array(159, 19, 156, 32, 133, 30, 134, 18, 121, 20, 74, 30, 28, 43, 23, 50, 33, 57, 60, 62, 104, 68, 162, 97, 137, 98, -26, 94, -23, 18, 139, 3, 161, 6)
+
+[node name="TextParser" parent="." instance=ExtResource("3_a40l4")]
+process_mode = 3

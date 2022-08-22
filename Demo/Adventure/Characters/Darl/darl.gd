@@ -18,20 +18,6 @@ var movement_state = MovementState.Idle
 
 var input : Vector2 = Vector2(40, 40)
 
-func _ready():
-	pass
-	
-func _input(event):
-	if event is InputEventKey and event.is_pressed():
-		if event.keycode >= KEY_A and event.keycode <= KEY_Z:
-			print ("Letter")
-		elif event.keycode >= KEY_0 and event.keycode <= KEY_9:
-			print ("Number")
-		elif event.keycode >= KEY_KP_0 and event.keycode <= KEY_KP_9:
-			print ("Keypad Number")
-		elif event.keycode == KEY_ENTER:
-			print ("Enter")
-
 func _physics_process(delta):
 				
 	if Input.is_action_just_pressed("up"):

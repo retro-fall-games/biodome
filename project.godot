@@ -57,7 +57,6 @@ buses/default_bus_layout="res://Demo/Audio/default_bus_layout.tres"
 
 Global="*res://RFG/Autoload/global.gd"
 PlayerVariables="*res://RFG/Autoload/player_variables.gd"
-Pause="*res://RFG/Autoload/pause.tscn"
 Guikeybinding="*res://RFG/UI/guikeybinding.gd"
 
 [display]
