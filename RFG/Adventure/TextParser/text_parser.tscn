@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd2jxaa5th6v7"]
+
+[ext_resource type="Script" path="res://RFG/Adventure/TextParser/text_parser.gd" id="1_rnteo"]
+[ext_resource type="PackedScene" uid="uid://cg8urvfxheuj5" path="res://RFG/Adventure/TextParser/text_prompt.tscn" id="2_koi7h"]
+
+[node name="TextParser" type="Node"]
+script = ExtResource("1_rnteo")
+
+[node name="TextPrompt" parent="." instance=ExtResource("2_koi7h")]

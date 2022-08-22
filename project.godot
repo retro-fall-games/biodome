@@ -9,6 +9,11 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "CharacterBody2D",
+"class": &"AdventureCharacter",
+"language": &"GDScript",
+"path": "res://RFG/Adventure/Character/character.gd"
+}, {
 "base": "Node",
 "class": &"BaseState",
 "language": &"GDScript",
@@ -18,6 +23,11 @@ _global_script_classes=[{
 "class": &"Character",
 "language": &"GDScript",
 "path": "res://RFG/Platformer/Character/character.gd"
+}, {
+"base": "Area2D",
+"class": &"Hotspot",
+"language": &"GDScript",
+"path": "res://RFG/Adventure/Interactions/Hotspot/hotspot.gd"
 }, {
 "base": "MoveState",
 "class": &"JumpState",
@@ -35,8 +45,10 @@ _global_script_classes=[{
 "path": "res://RFG/Scene/spawn.gd"
 }]
 _global_script_class_icons={
+"AdventureCharacter": "",
 "BaseState": "",
 "Character": "",
+"Hotspot": "",
 "JumpState": "",
 "MoveState": "",
 "Spawn": ""

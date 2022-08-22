@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://crewmpx5r2lbi"]
+
+[ext_resource type="Script" path="res://RFG/Adventure/Interactions/Hotspot/hotspot.gd" id="1_gu4ip"]
+
+[node name="Hotspot" type="Area2D"]
+script = ExtResource("1_gu4ip")
+
+[connection signal="body_entered" from="." to="." method="_on_hotspot_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_hotspot_body_exited"]
