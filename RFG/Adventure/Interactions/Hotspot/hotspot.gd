@@ -4,27 +4,9 @@ class_name Hotspot
 @export var names : Array
 @export var global : bool = false
 @export var within_collider : bool = false
-
-var commands = {
-	"look": "look",
-	"examine": "look",
-	"search": "look",
-	"read": "look",
-	"take": "take",
-	"grab": "take",
-	"get": "take",
-	"use": "use",
-	"open": "open",
-	"close": "close",
-	"talk": "talk",
-	"speak": "talk",
-	"chat": "talk"
-}
-
 @export var nouns : Array
 @export var adjectives : Array
 @export var verbs : Array
-
 @export var not_close_enough_message : String
 @export var on_look_message : String
 @export var on_use_message : String

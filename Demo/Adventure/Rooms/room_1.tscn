@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://wwkx11p0mr4r"]
+[gd_scene load_steps=7 format=3 uid="uid://wwkx11p0mr4r"]
 
 [ext_resource type="Texture2D" uid="uid://d0dbdxtsqotmu" path="res://Demo/Adventure/Rooms/Intro.png" id="1_g8w3s"]
 [ext_resource type="PackedScene" uid="uid://ba1twmy8xyxlk" path="res://Demo/Adventure/Characters/Darl/darl.tscn" id="2_qw026"]
 [ext_resource type="PackedScene" uid="uid://dd2jxaa5th6v7" path="res://RFG/Adventure/TextParser/text_parser.tscn" id="3_a40l4"]
 [ext_resource type="PackedScene" uid="uid://crewmpx5r2lbi" path="res://RFG/Adventure/Interactions/Hotspot/hotspot.tscn" id="4_786dr"]
+[ext_resource type="PackedScene" uid="uid://dwym450yy5usb" path="res://Demo/Adventure/UI/dialog.tscn" id="5_u7pdk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ip82p"]
 radius = 25.02
@@ -39,3 +40,21 @@ on_look_message = "You look at the beach"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hotspot"]
 position = Vector2(119, 49)
 shape = SubResource("CircleShape2D_ip82p")
+
+[node name="Dialog" parent="." instance=ExtResource("5_u7pdk")]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 160.0
+offset_bottom = 90.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Hotspot2" parent="." instance=ExtResource("4_786dr")]
+names = ["Darl"]
+global = true
+verbs = ["look"]
+on_look_message = "You look out over the ocean"

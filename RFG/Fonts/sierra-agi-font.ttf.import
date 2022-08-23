@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://1h4jd8x6ec31"
-path="res://.godot/imported/HelvetiPixel.ttf-9b4b2b64c9f2e40d466cbcf44bf3e24e.fontdata"
+uid="uid://bqm7hem4xj40"
+path="res://.godot/imported/sierra-agi-font.ttf-aba506b1af77aab408045b0d29bf06a6.fontdata"
 
 [deps]
 
-source_file="res://Demo/Fonts/HelvetiPixel.ttf"
-dest_files=["res://.godot/imported/HelvetiPixel.ttf-9b4b2b64c9f2e40d466cbcf44bf3e24e.fontdata"]
+source_file="res://RFG/Fonts/sierra-agi-font.ttf"
+dest_files=["res://.godot/imported/sierra-agi-font.ttf-aba506b1af77aab408045b0d29bf06a6.fontdata"]
 
 [params]
 

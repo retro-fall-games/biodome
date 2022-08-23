@@ -8,15 +8,31 @@ var subject : String
 var subject_parts : Array
 var interaction : String
 var hotspots : Array
+var dialog : Dialog
+
+var commands = {
+	"look": "look",
+	"examine": "look",
+	"search": "look",
+	"read": "look",
+	"take": "take",
+	"grab": "take",
+	"get": "take",
+	"use": "use",
+	"open": "open",
+	"close": "close",
+	"talk": "talk",
+	"speak": "talk",
+	"chat": "talk"
+}
 
 func _ready():
 	text_prompt.visible = false
 	var owner = get_owner()
 	if !owner:
 		owner = self
-	print(owner)
 	find_hotspots(owner, hotspots)
-	print(hotspots)
+	dialog = owner.find_child("Dialog")
 
 func _input(event):
 	if event is InputEventKey and event.is_pressed():
@@ -25,7 +41,7 @@ func _input(event):
 				process_command(text.text)
 				text_prompt.visible = false
 				get_tree().paused = false
-			else:
+			elif !dialog.is_showing():
 				text_prompt.visible = true
 				text.grab_focus()
 				get_tree().paused = true
@@ -40,96 +56,55 @@ func find_hotspots(node: Node, result : Array) -> void:
 
 func process_command(command: String):
 	command = command.strip_edges(true, true)
-	print("You have entered the command: ", command)
-
+	# print("You have entered the command: ", command)
+	
 	if command == "":
-		pass
-		#throw new DontUnderstandException();
+		dialog.set_text("I don't understand what you mean")
 
 	var sentence = command.split(" ", false, 2)
-	var parsed_text = parse_text(sentence)
 	
-	if !parsed_text:
-		pass
-		#throw new CantDoException();
-
-#		Hotspot hotspot = FindHotspot(parsedText);
+	if sentence.size() == 0:
+		dialog.set_text("I don't understand what you mean")
+		return
+	
+	parse_text(sentence)
+		
+	if interaction:
+		var hotspot = find_hotspot()
+		if hotspot:
+			hotspot.run_interaction(interaction);
+			return
 #
-#		if (hotspot != null)
-#		  hotspot.RunInteraction(parsedText.interaction);
-#		  return;
-#		throw new CantDoException();
-#	  catch (DontUnderstandException)
-#		DontUnderstand();
-#	  catch (CantDoException)
-#
-#		CantDo();
+	dialog.set_text("You can't do that")
 	
 func parse_text(sentence):
-	pass
-#    ParsedText parsedText = new ParsedText();
-#    parsedText.verb = sentence[0];
-#    if (sentence.Length == 1)
-#    {
-#    parsedText.interaction = "look";
-#    return parsedText;
-#    }
-#    else if (sentence.Length > 1)
-#    {
-#    parsedText.subject = StopwordTool.RemoveStopwords(sentence[1]);
-#    parsedText.subjectParts = parsedText.subject.Split(new[] { ' ' }, 2);
-#    string interaction;
-#    if (InteractionDictionary.verbs.TryGetValue(parsedText.verb, out interaction))
-#    {
-#        parsedText.interaction = interaction;
-#        return parsedText;
-#    }
-#    }
-#    return null;
+	verb = sentence[0];
+	if sentence.size() == 1:
+		interaction = "look";
+	elif sentence.size() > 1:
+		subject = sentence[1] # StopwordTool.RemoveStopwords(sentence[1]);
+		subject_parts = subject.split(" ", true, 2);
+		interaction = commands[verb];
 	
-#private Hotspot FindHotspot(ParsedText parsedText)
-#    {
-#      List<Hotspot> hotspots = FindVisibleHotspots();
-#      // Go through all the visible hotspots on the screen and match them to the text
-#      foreach (Hotspot hotspot in hotspots)
-#      {
-#        int verbIndex = hotspot.Verbs.FindIndex(i => i == parsedText.verb);
-#        if (verbIndex > -1)
-#        {
-#          var hasSubject = !string.IsNullOrEmpty(parsedText.subject);
-#          if (
-#            parsedText.verb.Equals("look") &&
-#            !hasSubject &&
-#            hotspot.Nouns.Count == 0 &&
-#            hotspot.Adjectives.Count == 0)
-#          {
-#            return hotspot;
-#          }
-#          else if (hasSubject)
-#          {
-#            bool hasOne = parsedText.subjectParts.Length == 1;
-#            bool hasMoreThanOne = parsedText.subjectParts.Length > 1;
-#            bool hasVerb = hotspot.HasVerb(parsedText.verb);
-#            bool hasNoun = hotspot.HasNoun(parsedText.subjectParts[0]);
-#            if (!hasNoun && hasMoreThanOne)
-#            {
-#              hasNoun = hotspot.HasNoun(parsedText.subjectParts[1]);
-#            }
-#            bool hasAdjective = hotspot.HasAdjective(parsedText.subjectParts[0]);
-#            if (!hasAdjective && hasMoreThanOne)
-#            {
-#              hasAdjective = hotspot.HasAdjective(parsedText.subjectParts[1]);
-#            }
-#            if (hasVerb && hasNoun && hasAdjective && hasMoreThanOne)
-#            {
-#              return hotspot;
-#            }
-#            if (hasVerb && (hasNoun || hasAdjective) && hasOne)
-#            {
-#              return hotspot;
-#            }
-#          }
-#        }
-#      }
-#      return null;
-#    }
+func find_hotspot() -> Hotspot:
+	for hotspot in hotspots:
+		if hotspot.is_visible_in_tree() and hotspot.has_verb(verb):
+			var has_subject = subject != "";
+			if verb == "look" and !has_subject and hotspot.nouns.size() == 0 and hotspot.adjectives.size() == 0:
+				return hotspot
+			elif has_subject:
+				var has_one = subject_parts.size() == 1;
+				var has_more_than_one = subject_parts.size() > 1;
+				var has_verb = hotspot.has_verb(verb);
+				var has_noun = hotspot.has_noun(subject_parts[0]);
+				if !has_noun and has_more_than_one:
+					has_noun = hotspot.has_noun(subject_parts[1]);
+				var has_adjective = hotspot.has_adjective(subject_parts[0])
+				if !has_adjective and has_more_than_one:
+					has_adjective = hotspot.has_adjective(subject_parts[1])
+					
+				if has_verb and has_noun and has_adjective and has_more_than_one:
+					return hotspot
+				if has_verb and (has_noun or has_adjective) and has_one:
+					return hotspot
+	return null;

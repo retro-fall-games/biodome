@@ -1,6 +1,6 @@
-[gd_resource type="Theme" load_steps=2 format=3]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dm70cpks1joyf"]
 
-[ext_resource type="FontFile" path="res://Demo/Fonts/HelvetiPixel.ttf" id="1_0rjpi"]
+[ext_resource type="FontFile" uid="uid://bqm7hem4xj40" path="res://RFG/Fonts/sierra-agi-font.ttf" id="1_3ekcl"]
 
 [resource]
-default_font = ExtResource("1_0rjpi")
+default_font = ExtResource("1_3ekcl")

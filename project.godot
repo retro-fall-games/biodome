@@ -24,6 +24,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://RFG/Platformer/Character/character.gd"
 }, {
+"base": "Control",
+"class": &"Dialog",
+"language": &"GDScript",
+"path": "res://Demo/Adventure/UI/dialog.gd"
+}, {
 "base": "Area2D",
 "class": &"Hotspot",
 "language": &"GDScript",
@@ -48,6 +53,7 @@ _global_script_class_icons={
 "AdventureCharacter": "",
 "BaseState": "",
 "Character": "",
+"Dialog": "",
 "Hotspot": "",
 "JumpState": "",
 "MoveState": "",

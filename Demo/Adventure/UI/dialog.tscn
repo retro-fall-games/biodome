@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwym450yy5usb"]
+
+[ext_resource type="Script" path="res://Demo/Adventure/UI/dialog.gd" id="1_xufrk"]
+[ext_resource type="Texture2D" uid="uid://cp48c18cmndqw" path="res://Demo/Adventure/UI/Dialogue.png" id="1_y8pko"]
+
+[sub_resource type="StyleBox" id="StyleBox_soyr3"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = 7.0
+content_margin_top = 7.0
+content_margin_right = 7.0
+content_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ce7ts"]
+texture = ExtResource("1_y8pko")
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 16.0
+region_rect = Rect2(0, 0, 48, 48)
+
+[node name="Dialog" type="Control"]
+offset_right = 320.0
+offset_bottom = 180.0
+script = ExtResource("1_xufrk")
+metadata/_edit_use_custom_anchors = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 315.0
+offset_bottom = 175.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 305.0
+offset_bottom = 85.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBox_soyr3")
+text = "Hello World This is what you need to succeed. Hello World This is what you need to succeed. Hello World This is what you need to succeed. Hello World This is what you need to succeed."
+autowrap_mode = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer/MarginContainer/Label"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_ce7ts")
