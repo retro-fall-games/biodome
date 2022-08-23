@@ -1,6 +1,6 @@
-class_name Hotspot
 extends Area2D
-
+class_name Hotspot
+	
 @export var names : Array
 @export var global : bool = false
 @export var within_collider : bool = false
@@ -32,7 +32,6 @@ var commands = {
 @export var on_take_message : String
 @export var on_open_message : String
 @export var on_close_message : String
-
 
 signal on_not_close_enough(message)
 signal on_look(message)
@@ -77,3 +76,11 @@ func run_interaction(interaction):
 		"close":
 			emit_signal("on_close", on_close_message)
 		
+func get_class():
+	return "Hotspot"
+
+func is_class(value):
+	if value == "Hotspot":
+		return true
+	else:
+		return false

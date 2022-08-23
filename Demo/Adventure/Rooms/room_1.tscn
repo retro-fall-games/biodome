@@ -32,6 +32,9 @@ process_mode = 3
 
 [node name="Hotspot" parent="." instance=ExtResource("4_786dr")]
 names = ["Darl"]
+nouns = ["beach"]
+verbs = ["look"]
+on_look_message = "You look at the beach"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hotspot"]
 position = Vector2(119, 49)
