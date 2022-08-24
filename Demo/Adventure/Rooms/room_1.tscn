@@ -9,7 +9,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ip82p"]
 radius = 25.02
 
-[node name="Level1" type="Node2D"]
+[node name="Room1" type="Node2D"]
 
 [node name="Intro" type="Sprite2D" parent="."]
 texture = ExtResource("1_g8w3s")
@@ -35,7 +35,8 @@ process_mode = 3
 names = ["Darl"]
 nouns = ["beach"]
 verbs = ["look"]
-on_look_message = "You look at the beach"
+not_close_enough_message = ["You aren't close enough"]
+on_look_message = ["sada", "fsdfsd"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hotspot"]
 position = Vector2(119, 49)
@@ -57,4 +58,4 @@ size_flags_vertical = 3
 names = ["Darl"]
 global = true
 verbs = ["look"]
-on_look_message = "You look out over the ocean"
+on_look_message = ["You look over the ocean and remember a lost past", "But somehow forget it all"]

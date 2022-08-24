@@ -9,6 +9,8 @@ var subject_parts : Array
 var interaction : String
 var hotspots : Array
 var dialog : Dialog
+var command_stack : Array
+var history_index : int = 0
 
 var commands = {
 	"look": "look",
@@ -47,6 +49,33 @@ func _input(event):
 				get_tree().paused = true
 			await get_tree().create_timer(.01).timeout 
 			text.text = ""
+		elif event.keycode == KEY_F3:
+			if dialog.is_showing():
+				return
+			if not text_prompt.visible:
+				if command_stack.size() > 0:
+					history_index = command_stack.size() - 1
+				else:
+					history_index = 0	
+			else:
+				history_index = history_index - 1
+				
+			if history_index < 0:
+				if command_stack.size() > 0:
+					history_index = command_stack.size() - 1
+				else:
+					history_index = 0	
+				
+			if command_stack.size() > 0:
+				var command = command_stack[history_index]
+				text.text = command
+				text.set_caret_column(text.text.length())
+				
+			if text.text != "" and not text_prompt.visible:
+				text_prompt.visible = true
+				text.grab_focus()
+				get_tree().paused = true
+					
 
 func find_hotspots(node: Node, result : Array) -> void:
 	if node is Hotspot:
@@ -57,7 +86,12 @@ func find_hotspots(node: Node, result : Array) -> void:
 func process_command(command: String):
 	command = command.strip_edges(true, true)
 	# print("You have entered the command: ", command)
-	
+	if command_stack.size() > 5:
+		command_stack.pop_front()
+		
+	if not command_stack.has(command):
+		command_stack.push_back(command)
+				
 	if command == "":
 		dialog.set_text("I don't understand what you mean")
 
@@ -67,6 +101,10 @@ func process_command(command: String):
 		dialog.set_text("I don't understand what you mean")
 		return
 	
+	interaction = ""
+	verb = ""
+	subject = ""
+	subject_parts = []
 	parse_text(sentence)
 		
 	if interaction:
@@ -84,7 +122,8 @@ func parse_text(sentence):
 	elif sentence.size() > 1:
 		subject = sentence[1] # StopwordTool.RemoveStopwords(sentence[1]);
 		subject_parts = subject.split(" ", true, 2);
-		interaction = commands[verb];
+		if commands.has(verb):
+			interaction = commands[verb]
 	
 func find_hotspot() -> Hotspot:
 	for hotspot in hotspots:

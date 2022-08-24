@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://c6ekkq3eupn0h"]
+
+[ext_resource type="Texture2D" uid="uid://ue54x5oysi6e" path="res://Demo/Adventure/Rooms/MainEntrance/MainEntrance_room.png" id="1_jyam5"]
+[ext_resource type="PackedScene" uid="uid://ba1twmy8xyxlk" path="res://Demo/Adventure/Characters/Darl/darl.tscn" id="2_2ftfv"]
+[ext_resource type="PackedScene" uid="uid://dd2jxaa5th6v7" path="res://RFG/Adventure/TextParser/text_parser.tscn" id="3_sstqo"]
+[ext_resource type="PackedScene" uid="uid://crewmpx5r2lbi" path="res://RFG/Adventure/Interactions/Hotspot/hotspot.tscn" id="4_clrsd"]
+[ext_resource type="PackedScene" uid="uid://dwym450yy5usb" path="res://Demo/Adventure/UI/dialog.tscn" id="5_gn14d"]
+[ext_resource type="Texture2D" uid="uid://csu03b0rxyvgi" path="res://Demo/Adventure/Rooms/MainEntrance/MainEntrance_stairs.png" id="6_6jp88"]
+[ext_resource type="Texture2D" uid="uid://bmh0esfefq3sr" path="res://Demo/Adventure/Rooms/MainEntrance/MainEntrance_barrier.png" id="7_kvdlf"]
+[ext_resource type="Texture2D" uid="uid://2a6lahbvjsxf" path="res://Demo/Adventure/Rooms/MainEntrance/MainEntrance_sign.png" id="8_1uf6o"]
+[ext_resource type="PackedScene" uid="uid://8mdk73dyu2fb" path="res://Demo/Adventure/Characters/Guard/guard.tscn" id="9_dje2e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhpg3"]
+size = Vector2(58, 33)
+
+[node name="Room2" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -5
+texture = ExtResource("1_jyam5")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Background"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Darl" parent="." instance=ExtResource("2_2ftfv")]
+position = Vector2(67, 36)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="Bounds" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bounds"]
+polygon = PackedVector2Array(-78, 25, -161, 64, -161, 13, -161, -19, -156, 40, -78, 12)
+
+[node name="TextParser" parent="." instance=ExtResource("3_sstqo")]
+process_mode = 3
+
+[node name="Hotspot" parent="." instance=ExtResource("4_clrsd")]
+names = ["Darl"]
+nouns = ["sign"]
+verbs = ["look"]
+not_close_enough_message = ["You aren't close enough"]
+on_look_message = ["The sign says free tour"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hotspot"]
+position = Vector2(107, 35.5)
+shape = SubResource("RectangleShape2D_nhpg3")
+
+[node name="Dialog" parent="." instance=ExtResource("5_gn14d")]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 160.0
+offset_bottom = 90.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Hotspot2" parent="." instance=ExtResource("4_clrsd")]
+names = ["Darl"]
+global = true
+verbs = ["look"]
+on_look_message = ["You look over the ocean and remember a lost past", "But somehow forget it all"]
+
+[node name="MainEntranceStairs" type="Sprite2D" parent="."]
+texture = ExtResource("6_6jp88")
+
+[node name="MainEntranceBarrier" type="Sprite2D" parent="."]
+texture = ExtResource("7_kvdlf")
+
+[node name="MainEntranceSign" type="Sprite2D" parent="."]
+texture = ExtResource("8_1uf6o")
+
+[node name="Guard" parent="." instance=ExtResource("9_dje2e")]
+position = Vector2(71, -32)
