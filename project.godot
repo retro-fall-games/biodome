@@ -73,8 +73,8 @@ buses/default_bus_layout="res://Demo/Audio/default_bus_layout.tres"
 
 [autoload]
 
-Global="*res://RFG/Autoload/global.gd"
-PlayerVariables="*res://RFG/Autoload/player_variables.gd"
+Global="*res://Demo/Autoload/global.gd"
+PlayerVariables="*res://Demo/Autoload/player_variables.gd"
 Guikeybinding="*res://RFG/UI/guikeybinding.gd"
 
 [display]

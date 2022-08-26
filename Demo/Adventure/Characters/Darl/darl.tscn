@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://ba1twmy8xyxlk"]
 
-[ext_resource type="Script" path="res://Demo/Adventure/Characters/Darl/darl.gd" id="1_l8ry3"]
+[ext_resource type="Script" path="res://RFG/Adventure/Character/character.gd" id="1_0als3"]
 [ext_resource type="Texture2D" uid="uid://d1wwawnqalf4v" path="res://Demo/Adventure/Characters/Darl/Darl-Sheet.png" id="1_nw2pm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jue88"]
@@ -132,7 +132,7 @@ _data = {
 }
 
 [node name="Darl" type="CharacterBody2D"]
-script = ExtResource("1_l8ry3")
+script = ExtResource("1_0als3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_nw2pm")

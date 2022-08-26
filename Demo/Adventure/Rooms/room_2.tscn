@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c6ekkq3eupn0h"]
+[gd_scene load_steps=15 format=3 uid="uid://c6ekkq3eupn0h"]
 
 [ext_resource type="Texture2D" uid="uid://ue54x5oysi6e" path="res://Demo/Adventure/Rooms/MainEntrance/MainEntrance_room.png" id="1_jyam5"]
 [ext_resource type="PackedScene" uid="uid://ba1twmy8xyxlk" path="res://Demo/Adventure/Characters/Darl/darl.tscn" id="2_2ftfv"]
@@ -9,9 +9,19 @@
 [ext_resource type="Texture2D" uid="uid://bmh0esfefq3sr" path="res://Demo/Adventure/Rooms/MainEntrance/MainEntrance_barrier.png" id="7_kvdlf"]
 [ext_resource type="Texture2D" uid="uid://2a6lahbvjsxf" path="res://Demo/Adventure/Rooms/MainEntrance/MainEntrance_sign.png" id="8_1uf6o"]
 [ext_resource type="PackedScene" uid="uid://8mdk73dyu2fb" path="res://Demo/Adventure/Characters/Guard/guard.tscn" id="9_dje2e"]
+[ext_resource type="PackedScene" uid="uid://beuhxc3br74fl" path="res://RFG/Scene/scene_door.tscn" id="10_v7fji"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nhpg3"]
 size = Vector2(58, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rebvb"]
+size = Vector2(29, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ai54l"]
+size = Vector2(346, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_drbhq"]
+size = Vector2(47, 14)
 
 [node name="Room2" type="Node2D"]
 y_sort_enabled = true
@@ -32,21 +42,16 @@ current = true
 [node name="Bounds" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bounds"]
-polygon = PackedVector2Array(-78, 25, -161, 64, -161, 13, -161, -19, -156, 40, -78, 12)
+polygon = PackedVector2Array(-78, 25, -157, 61, -160, 90, -160.872, 45.5392, -161, 39, -161, 13, -161, -19, -156, 24, -78, 17)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Bounds"]
+polygon = PackedVector2Array(130, 17, 162, 91, 162, -17, 86, -18, 124, 5)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Bounds"]
+polygon = PackedVector2Array(160, -14, 158, -30, 66, -31, 58, -39, 36, -39, 27, -30, -8, -30, -28, -17, 13, -16, 3, -7, -31, 16, -47, 15, -47, -14, -116, -14, -111, -21, -90, -30, -91, -91, 160, -90)
 
 [node name="TextParser" parent="." instance=ExtResource("3_sstqo")]
 process_mode = 3
-
-[node name="Hotspot" parent="." instance=ExtResource("4_clrsd")]
-names = ["Darl"]
-nouns = ["sign"]
-verbs = ["look"]
-not_close_enough_message = ["You aren't close enough"]
-on_look_message = ["The sign says free tour"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hotspot"]
-position = Vector2(107, 35.5)
-shape = SubResource("RectangleShape2D_nhpg3")
 
 [node name="Dialog" parent="." instance=ExtResource("5_gn14d")]
 anchor_left = 0.5
@@ -64,16 +69,65 @@ size_flags_vertical = 3
 names = ["Darl"]
 global = true
 verbs = ["look"]
-on_look_message = ["You look over the ocean and remember a lost past", "But somehow forget it all"]
+on_look_message = ["This is a prison", "But somehow forget it all"]
 
 [node name="MainEntranceStairs" type="Sprite2D" parent="."]
+position = Vector2(48, -33)
 texture = ExtResource("6_6jp88")
+offset = Vector2(0, 22)
+region_enabled = true
+region_rect = Rect2(112, 48, 192, 64)
 
 [node name="MainEntranceBarrier" type="Sprite2D" parent="."]
+position = Vector2(0, 10)
 texture = ExtResource("7_kvdlf")
+offset = Vector2(0, -12)
 
 [node name="MainEntranceSign" type="Sprite2D" parent="."]
+position = Vector2(98, 23)
 texture = ExtResource("8_1uf6o")
+offset = Vector2(0, -8)
+region_enabled = true
+region_rect = Rect2(250, 80, 40, 50)
+
+[node name="Hotspot" parent="MainEntranceSign" instance=ExtResource("4_clrsd")]
+position = Vector2(-110, -23)
+names = ["Darl"]
+nouns = ["sign"]
+verbs = ["look"]
+not_close_enough_message = ["You aren't close enough"]
+on_look_message = ["The sign says free tour"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainEntranceSign/Hotspot"]
+position = Vector2(107, 35.5)
+shape = SubResource("RectangleShape2D_nhpg3")
+
+[node name="Area2D" type="StaticBody2D" parent="MainEntranceSign"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainEntranceSign/Area2D"]
+position = Vector2(-2.5, 14.5)
+shape = SubResource("RectangleShape2D_rebvb")
 
 [node name="Guard" parent="." instance=ExtResource("9_dje2e")]
-position = Vector2(71, -32)
+position = Vector2(71, -19)
+y_sort_enabled = true
+disable_mode = 1
+
+[node name="SceneDoor" parent="." instance=ExtResource("10_v7fji")]
+position = Vector2(0, 103)
+scene = "res://Demo/Adventure/Rooms/room_1.tscn"
+mask = "Darl"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneDoor"]
+position = Vector2(1, -3)
+shape = SubResource("RectangleShape2D_ai54l")
+
+[node name="SceneDoor2" parent="." instance=ExtResource("10_v7fji")]
+position = Vector2(-90, -22)
+scene = "res://Demo/Adventure/Rooms/room_1.tscn"
+mask = "Darl"
+id = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneDoor2"]
+position = Vector2(-46.5, -3)
+shape = SubResource("RectangleShape2D_drbhq")

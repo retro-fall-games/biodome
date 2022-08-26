@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3]
 
-[ext_resource type="Script" path="res://RFG/Autoload/pause.gd" id="1_iwrc7"]
-[ext_resource type="Texture2D" path="res://Demo/Art/Testman Platformer Pack/textures/black_texture.png" id="2_2s6sx"]
+[ext_resource type="Script" path="res://Demo/Autoload/pause.gd" id="1_iwrc7"]
+[ext_resource type="Texture2D" uid="uid://c21670ta2kdxl" path="res://Demo/Art/Testman Platformer Pack/textures/black_texture.png" id="2_2s6sx"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 process_mode = 3

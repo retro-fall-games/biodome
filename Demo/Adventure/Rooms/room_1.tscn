@@ -1,13 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://wwkx11p0mr4r"]
+[gd_scene load_steps=9 format=3 uid="uid://wwkx11p0mr4r"]
 
 [ext_resource type="Texture2D" uid="uid://d0dbdxtsqotmu" path="res://Demo/Adventure/Rooms/Intro.png" id="1_g8w3s"]
 [ext_resource type="PackedScene" uid="uid://ba1twmy8xyxlk" path="res://Demo/Adventure/Characters/Darl/darl.tscn" id="2_qw026"]
 [ext_resource type="PackedScene" uid="uid://dd2jxaa5th6v7" path="res://RFG/Adventure/TextParser/text_parser.tscn" id="3_a40l4"]
 [ext_resource type="PackedScene" uid="uid://crewmpx5r2lbi" path="res://RFG/Adventure/Interactions/Hotspot/hotspot.tscn" id="4_786dr"]
 [ext_resource type="PackedScene" uid="uid://dwym450yy5usb" path="res://Demo/Adventure/UI/dialog.tscn" id="5_u7pdk"]
+[ext_resource type="PackedScene" uid="uid://beuhxc3br74fl" path="res://RFG/Scene/scene_door.tscn" id="6_po4cr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ip82p"]
 radius = 25.02
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4fui"]
+size = Vector2(20, 96)
 
 [node name="Room1" type="Node2D"]
 
@@ -28,6 +32,18 @@ current = true
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bounds"]
 polygon = PackedVector2Array(159, 19, 156, 32, 133, 30, 134, 18, 121, 20, 74, 30, 28, 43, 23, 50, 33, 57, 60, 62, 104, 68, 162, 97, 137, 98, -26, 94, -23, 18, 139, 3, 161, 6)
 
+[node name="Dialog" parent="." instance=ExtResource("5_u7pdk")]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 160.0
+offset_bottom = 90.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [node name="TextParser" parent="." instance=ExtResource("3_a40l4")]
 process_mode = 3
 
@@ -42,20 +58,17 @@ on_look_message = ["sada", "fsdfsd"]
 position = Vector2(119, 49)
 shape = SubResource("CircleShape2D_ip82p")
 
-[node name="Dialog" parent="." instance=ExtResource("5_u7pdk")]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -160.0
-offset_top = -90.0
-offset_right = 160.0
-offset_bottom = 90.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
 [node name="Hotspot2" parent="." instance=ExtResource("4_786dr")]
 names = ["Darl"]
 global = true
 verbs = ["look"]
 on_look_message = ["You look over the ocean and remember a lost past", "But somehow forget it all"]
+
+[node name="SceneDoor" parent="." instance=ExtResource("6_po4cr")]
+position = Vector2(172, 50)
+scene = "res://Demo/Adventure/Rooms/room_2.tscn"
+mask = "Darl"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneDoor"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_i4fui")
