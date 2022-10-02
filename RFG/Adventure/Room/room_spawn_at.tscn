@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy35ypvx3scdp"]
+
+[ext_resource type="Script" path="res://RFG/Adventure/Room/room_spawn_at.gd" id="1_yp65d"]
+
+[node name="RoomSpawnAt" type="Node2D"]
+script = ExtResource("1_yp65d")

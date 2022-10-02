@@ -22,10 +22,9 @@ func _ready():
 	load_keys()
 	
 func load_keys():
-	var file = File.new()
-	if(file.file_exists(file_name)):
+	if FileAccess.file_exists(file_name):
 		delete_old_keys()
-		file.open(file_name,File.READ)
+		var file = FileAccess.open(file_name, FileAccess.READ)
 		var json = JSON.new()
 		var json_string = file.get_as_text();
 		var error = json.parse(json_string)
@@ -39,8 +38,6 @@ func load_keys():
 				print("Unexpected data")
 		else:
 			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
-		
-		file.close()
 	else:
 		#NoFile, so lets save the default keys now
 		save_keys()
@@ -50,7 +47,7 @@ func delete_old_keys():
 	#Remove the old keys
 	for i in key_dict:
 		var oldkey = InputEventKey.new()
-		oldkey.keycode = int(Guikeybinding.key_dict[i])
+#		oldkey.keycode = int(Guikeybinding.key_dict[i])
 		InputMap.action_erase_event(i,oldkey)
 
 func setup_keys():
@@ -63,8 +60,7 @@ func setup_keys():
 		InputMap.action_add_event(i,newkey)
 	
 func save_keys():
-	var file = File.new()
-	file.open(file_name,File.WRITE)
+	var file = FileAccess.open(file_name, FileAccess.WRITE)
 	var json_object = JSON.new()
 	print(json_object.stringify(key_dict))
 	file.store_string(json_object.stringify(key_dict))

@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqykdorr5d3l0"]
+
+[ext_resource type="Script" path="res://RFG/Globals/nodes/Label.gd" id="1_ixrv0"]
+[ext_resource type="Script" path="res://RFG/Globals/nodes/TextEdit.gd" id="2_dt22k"]
+
+[node name="GlobalSignals" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Control"]
+offset_right = 283.0
+offset_bottom = 84.0
+metadata/_edit_layout_mode = 1
+
+[node name="Label" type="Label" parent="Control/HBoxContainer"]
+offset_right = 283.0
+offset_bottom = 19.0
+text = "This is some text"
+script = ExtResource("1_ixrv0")
+
+[node name="TextEdit" type="TextEdit" parent="Control/HBoxContainer"]
+offset_top = 23.0
+offset_right = 283.0
+offset_bottom = 84.0
+size_flags_vertical = 3
+text = "fds"
+placeholder_text = "Please enter your name"
+script = ExtResource("2_dt22k")

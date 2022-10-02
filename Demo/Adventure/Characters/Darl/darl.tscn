@@ -131,7 +131,8 @@ _data = {
 "WalkX": SubResource("Animation_at1dl")
 }
 
-[node name="Darl" type="CharacterBody2D"]
+[node name="Darl" type="CharacterBody2D" groups=["Persist"]]
+collision_mask = 15
 script = ExtResource("1_0als3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

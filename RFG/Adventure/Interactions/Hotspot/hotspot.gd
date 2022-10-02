@@ -1,6 +1,6 @@
-extends Area2D
 class_name Hotspot
-	
+extends Area2D
+
 @export var names : Array
 @export var global : bool = false
 @export var within_collider : bool = false

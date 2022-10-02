@@ -31,6 +31,8 @@ func _input(event):
 			if label.visible:
 				await get_tree().create_timer(.01).timeout 
 				label.visible = false
+				if message_queue.size() == 0:
+					get_tree().paused = false
 				
 func _physics_process(delta):
 	if message_queue.size() > 0:

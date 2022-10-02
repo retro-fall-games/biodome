@@ -153,6 +153,8 @@ _data = {
 }
 
 [node name="Guard" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 7
 script = ExtResource("1_37qyx")
 character_type = 1
 

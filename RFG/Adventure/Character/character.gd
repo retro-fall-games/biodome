@@ -20,6 +20,9 @@ var movement_direction = MovementDirection.Down
 var movement_state = MovementState.Idle
 var input : Vector2 = Vector2(40, 40)
 
+func _ready():
+	GlobalSignals.add_listener('spawn_player', self, '_on_Spawn_player')
+
 func _physics_process(delta):
 	if character_type == CharacterType.NPC:
 		return
@@ -87,14 +90,36 @@ func update_animations():
 	elif (velocity.y > 0):
 		animation_player.play(animation_walk_down)
 	else:
-		match movement_direction:
-			MovementDirection.Up:
-				animation_player.play(animation_idle_up)
-			MovementDirection.Down:
-				animation_player.play(animation_idle_down)
-			MovementDirection.Left:
-				animation_player.play(animation_idle_x)
-			MovementDirection.Right:
-				animation_player.play(animation_idle_x)
-			_:
-				animation_player.play(animation_idle_x)
+		update_movement_direction()
+
+func update_movement_direction():
+	match movement_direction:
+		MovementDirection.Up:
+			animation_player.play(animation_idle_up)
+		MovementDirection.Down:
+			animation_player.play(animation_idle_down)
+		MovementDirection.Left:
+			animation_player.play(animation_idle_x)
+		MovementDirection.Right:
+			animation_player.play(animation_idle_x)
+		_:
+			animation_player.play(animation_idle_x)
+
+func _on_Spawn_player(new_position, move_direction):
+	if character_type == CharacterType.NPC:
+		return
+	position = new_position
+	if move_direction != null:
+		movement_direction = move_direction
+		update_movement_direction()
+		if move_direction == MovementDirection.Left:
+			scale.x = scale.y * -1	
+
+func save():
+	var save_dict = {
+		"filename" : get_path(),
+		"parent" : get_parent().get_path(),
+		"pos_x" : position.x,
+		"pos_y" : position.y
+	}
+	return save_dict

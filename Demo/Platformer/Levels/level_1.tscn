@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://mq6vu1d6lf6r" path="res://Demo/Art/Testman Platformer Pack/tiles/background.png" id="3_ji40a"]
 [ext_resource type="Texture2D" uid="uid://dtqm2t85dmgw2" path="res://Demo/Art/Testman Platformer Pack/tiles/clouds.png" id="4_bpb5w"]
 [ext_resource type="PackedScene" path="res://Demo/Platformer/Items/coin.tscn" id="5_sdlov"]
-[ext_resource type="PackedScene" uid="uid://b16bx2ycbkoca" path="res://RFG/Scene/scene_door.tscn" id="6_dcrip"]
-[ext_resource type="PackedScene" path="res://RFG/Scene/spawn.tscn" id="8_8tdis"]
+[ext_resource type="PackedScene" path="res://RFG/Adventure/Room/room_door.tscn" id="6_dcrip"]
+[ext_resource type="PackedScene" path="res://RFG/Adventure/Room/spawn.tscn" id="8_8tdis"]
 [ext_resource type="PackedScene" uid="uid://lf04i4egw1rn" path="res://RFG/Transitions/transition_screen.tscn" id="9_25ygg"]
-[ext_resource type="PackedScene" path="res://RFG/Scene/trap.tscn" id="9_cme6p"]
+[ext_resource type="PackedScene" path="res://RFG/Adventure/Room/trap.tscn" id="9_cme6p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r0qj2"]
 texture = ExtResource("1_2bxu7")

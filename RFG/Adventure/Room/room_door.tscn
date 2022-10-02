@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxcd30ipkesuc"]
+
+[ext_resource type="Script" path="res://RFG/Adventure/Room/room_door.gd" id="1_nqkqe"]
+
+[node name="RoomDoor" type="Area2D"]
+collision_layer = 8
+script = ExtResource("1_nqkqe")
+
+[connection signal="body_entered" from="." to="." method="_on_room_door_body_entered"]

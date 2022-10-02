@@ -42,7 +42,6 @@ func _input(event):
 			if text_prompt.visible:
 				process_command(text.text)
 				text_prompt.visible = false
-				get_tree().paused = false
 			elif !dialog.is_showing():
 				text_prompt.visible = true
 				text.grab_focus()

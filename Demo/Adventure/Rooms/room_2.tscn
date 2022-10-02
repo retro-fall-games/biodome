@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c6ekkq3eupn0h"]
+[gd_scene load_steps=16 format=3 uid="uid://bc5k2k01vaisn"]
 
 [ext_resource type="Texture2D" uid="uid://ue54x5oysi6e" path="res://Demo/Adventure/Rooms/MainEntrance/MainEntrance_room.png" id="1_jyam5"]
 [ext_resource type="PackedScene" uid="uid://ba1twmy8xyxlk" path="res://Demo/Adventure/Characters/Darl/darl.tscn" id="2_2ftfv"]
@@ -9,7 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://bmh0esfefq3sr" path="res://Demo/Adventure/Rooms/MainEntrance/MainEntrance_barrier.png" id="7_kvdlf"]
 [ext_resource type="Texture2D" uid="uid://2a6lahbvjsxf" path="res://Demo/Adventure/Rooms/MainEntrance/MainEntrance_sign.png" id="8_1uf6o"]
 [ext_resource type="PackedScene" uid="uid://8mdk73dyu2fb" path="res://Demo/Adventure/Characters/Guard/guard.tscn" id="9_dje2e"]
-[ext_resource type="PackedScene" uid="uid://beuhxc3br74fl" path="res://RFG/Scene/scene_door.tscn" id="10_v7fji"]
+[ext_resource type="PackedScene" uid="uid://cxcd30ipkesuc" path="res://RFG/Adventure/Room/room_door.tscn" id="10_v7fji"]
+[ext_resource type="Script" path="res://RFG/Adventure/Room/room_spawn_at.gd" id="11_wqre2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nhpg3"]
 size = Vector2(58, 33)
@@ -17,8 +18,8 @@ size = Vector2(58, 33)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rebvb"]
 size = Vector2(29, 9)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ai54l"]
-size = Vector2(346, 24)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjv4v"]
+size = Vector2(323, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_drbhq"]
 size = Vector2(47, 14)
@@ -40,6 +41,8 @@ position = Vector2(67, 36)
 current = true
 
 [node name="Bounds" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bounds"]
 polygon = PackedVector2Array(-78, 25, -157, 61, -160, 90, -160.872, 45.5392, -161, 39, -161, 13, -161, -19, -156, 24, -78, 17)
@@ -54,6 +57,8 @@ polygon = PackedVector2Array(160, -14, 158, -30, 66, -31, 58, -39, 36, -39, 27, 
 process_mode = 3
 
 [node name="Dialog" parent="." instance=ExtResource("5_gn14d")]
+layout_mode = 3
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -62,6 +67,8 @@ offset_left = -160.0
 offset_top = -90.0
 offset_right = 160.0
 offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -113,21 +120,28 @@ position = Vector2(71, -19)
 y_sort_enabled = true
 disable_mode = 1
 
-[node name="SceneDoor" parent="." instance=ExtResource("10_v7fji")]
+[node name="RoomDoor" parent="." instance=ExtResource("10_v7fji")]
 position = Vector2(0, 103)
 scene = "res://Demo/Adventure/Rooms/room_1.tscn"
-mask = "Darl"
+movement_direction = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneDoor"]
-position = Vector2(1, -3)
-shape = SubResource("RectangleShape2D_ai54l")
+[node name="CollisionShape2d" type="CollisionShape2D" parent="RoomDoor"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_qjv4v")
 
-[node name="SceneDoor2" parent="." instance=ExtResource("10_v7fji")]
+[node name="RoomSpawnAt" type="Node2D" parent="RoomDoor"]
+position = Vector2(0, -38)
+script = ExtResource("11_wqre2")
+
+[node name="RoomDoor2" parent="." instance=ExtResource("10_v7fji")]
 position = Vector2(-90, -22)
-scene = "res://Demo/Adventure/Rooms/room_1.tscn"
-mask = "Darl"
 id = 1
+movement_direction = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneDoor2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomDoor2"]
 position = Vector2(-46.5, -3)
 shape = SubResource("RectangleShape2D_drbhq")
+
+[node name="RoomSpawnAt" type="Node2D" parent="RoomDoor2"]
+position = Vector2(-47, 10)
+script = ExtResource("11_wqre2")
