@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyv8ww21f8al3"]
+
+[ext_resource type="PackedScene" uid="uid://dwym450yy5usb" path="res://Demo/Adventure/UI/dialog.tscn" id="1_boba5"]
+[ext_resource type="PackedScene" uid="uid://bio47n3nt6u6k" path="res://Demo/Adventure/UI/menu_bar.tscn" id="2_p7gko"]
+[ext_resource type="PackedScene" uid="uid://dd2jxaa5th6v7" path="res://RFG/Adventure/TextParser/text_parser.tscn" id="3_v5pc1"]
+
+[node name="RoomTemplate" type="Node2D"]
+
+[node name="Dialog" parent="." instance=ExtResource("1_boba5")]
+
+[node name="MenuBar" parent="." instance=ExtResource("2_p7gko")]
+
+[node name="TextParser" parent="." instance=ExtResource("3_v5pc1")]

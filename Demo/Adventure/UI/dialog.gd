@@ -1,4 +1,4 @@
-extends Control
+extends Node
 class_name Dialog
 
 @onready var label = $MarginContainer/MarginContainer/Label
@@ -45,6 +45,9 @@ func set_text(text : String):
 func is_showing():
 	return label.visible == true
 	
+func hide():
+	label.visible = false
+	
 func find_hotspots(node: Node, result : Array) -> void:
 	if node is Hotspot:
 		result.push_back(node)
@@ -52,6 +55,10 @@ func find_hotspots(node: Node, result : Array) -> void:
 		find_hotspots(child, result)
 		
 func _on_dialog_message(message):
+	if message is String:
+		message_queue.push_back(message)
+		
+func send_message(message):
 	if message is String:
 		message_queue.push_back(message)
 

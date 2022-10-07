@@ -19,12 +19,8 @@ margin_right = 16.0
 margin_bottom = 16.0
 region_rect = Rect2(0, 0, 48, 48)
 
-[node name="Dialog" type="Control"]
+[node name="Dialog" type="Node"]
 process_mode = 3
-layout_mode = 3
-anchors_preset = 0
-offset_right = 320.0
-offset_bottom = 180.0
 script = ExtResource("1_xufrk")
 metadata/_edit_use_custom_anchors = true
 
@@ -32,6 +28,8 @@ metadata/_edit_use_custom_anchors = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
@@ -39,15 +37,17 @@ theme_override_constants/margin_bottom = 5
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 offset_left = 5.0
-offset_top = 5.0
+offset_top = 72.0
 offset_right = 315.0
-offset_bottom = 175.0
+offset_bottom = 107.0
+size_flags_vertical = 4
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="Label" type="Label" parent="MarginContainer/MarginContainer"]
+process_mode = 3
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 305.0
@@ -65,4 +65,6 @@ show_behind_parent = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_ce7ts")

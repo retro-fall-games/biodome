@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cg8urvfxheuj5" path="res://RFG/Adventure/TextParser/text_prompt.tscn" id="2_koi7h"]
 
 [node name="TextParser" type="Node"]
+process_mode = 3
 script = ExtResource("1_rnteo")
 
 [node name="TextPrompt" parent="." instance=ExtResource("2_koi7h")]

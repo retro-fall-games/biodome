@@ -24,7 +24,7 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://RFG/Platformer/Character/character.gd"
 }, {
-"base": "Control",
+"base": "Node",
 "class": &"Dialog",
 "language": &"GDScript",
 "path": "res://Demo/Adventure/UI/dialog.gd"
@@ -38,6 +38,11 @@ _global_script_classes=[{
 "class": &"JumpState",
 "language": &"GDScript",
 "path": "res://RFG/Platformer/Character/states/jump.gd"
+}, {
+"base": "Node",
+"class": &"MenuAppBar",
+"language": &"GDScript",
+"path": "res://Demo/Adventure/UI/menu_bar.gd"
 }, {
 "base": "BaseState",
 "class": &"MoveState",
@@ -61,6 +66,7 @@ _global_script_class_icons={
 "Dialog": "",
 "Hotspot": "",
 "JumpState": "",
+"MenuAppBar": "",
 "MoveState": "",
 "RoomDoor": "",
 "RoomSpawnAt": ""

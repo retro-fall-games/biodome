@@ -9,6 +9,7 @@ var subject_parts : Array
 var interaction : String
 var hotspots : Array
 var dialog : Dialog
+var menu_bar : MenuAppBar
 var command_stack : Array
 var history_index : int = 0
 
@@ -35,10 +36,16 @@ func _ready():
 		owner = self
 	find_hotspots(owner, hotspots)
 	dialog = owner.find_child("Dialog")
+	menu_bar = owner.find_child("MenuBar") 
 
 func _input(event):
 	if event is InputEventKey and event.is_pressed():
-		if event.keycode == KEY_ENTER:
+		if event.keycode == KEY_ESCAPE:
+			dialog.hide()
+			text_prompt.visible = false
+		elif event.keycode == KEY_ENTER:
+			if menu_bar.is_showing():
+				return
 			if text_prompt.visible:
 				process_command(text.text)
 				text_prompt.visible = false
@@ -92,12 +99,13 @@ func process_command(command: String):
 		command_stack.push_back(command)
 				
 	if command == "":
-		dialog.set_text("I don't understand what you mean")
+		dialog.send_message("I don't understand what you mean")
+		return
 
 	var sentence = command.split(" ", false, 2)
-	
+
 	if sentence.size() == 0:
-		dialog.set_text("I don't understand what you mean")
+		dialog.send_message("I don't understand what you mean")
 		return
 	
 	interaction = ""
@@ -111,8 +119,7 @@ func process_command(command: String):
 		if hotspot:
 			hotspot.run_interaction(interaction);
 			return
-#
-	dialog.set_text("You can't do that")
+	dialog.send_message("You can't do that")
 	
 func parse_text(sentence):
 	verb = sentence[0];

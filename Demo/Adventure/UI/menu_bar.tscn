@@ -1,0 +1,291 @@
+[gd_scene load_steps=7 format=3 uid="uid://bio47n3nt6u6k"]
+
+[ext_resource type="Script" path="res://Demo/Adventure/UI/menu_bar.gd" id="1_x07ct"]
+[ext_resource type="Texture2D" uid="uid://cp48c18cmndqw" path="res://Demo/Adventure/UI/Dialogue.png" id="2_7ar5a"]
+
+[sub_resource type="Texture2D" id="Texture2D_gm0gc"]
+resource_local_to_scene = false
+resource_name = ""
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sdmgn"]
+texture = SubResource("Texture2D_gm0gc")
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5lgw"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kwaig"]
+texture = ExtResource("2_7ar5a")
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 16.0
+region_rect = Rect2(0, 0, 48, 48)
+
+[node name="MenuBar" type="Node"]
+process_mode = 3
+script = ExtResource("1_x07ct")
+
+[node name="Panel" type="Panel" parent="."]
+show_behind_parent = true
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 13.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_sdmgn")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
+offset_right = 320.0
+offset_bottom = 13.0
+theme_override_constants/separation = 11
+
+[node name="File" type="Label" parent="Panel/MarginContainer/HBoxContainer"]
+offset_right = 32.0
+offset_bottom = 13.0
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_j5lgw")
+text = "File"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/HBoxContainer/File"]
+show_behind_parent = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 12.0
+offset_right = 48.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_kwaig")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/HBoxContainer/File/Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer/File/Panel/MarginContainer"]
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 74.0
+offset_bottom = 61.0
+
+[node name="Save" type="Label" parent="Panel/MarginContainer/HBoxContainer/File/Panel/MarginContainer/VBoxContainer"]
+process_mode = 3
+offset_right = 68.0
+offset_bottom = 11.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Save"
+vertical_alignment = 1
+
+[node name="Restore" type="Label" parent="Panel/MarginContainer/HBoxContainer/File/Panel/MarginContainer/VBoxContainer"]
+process_mode = 3
+offset_top = 15.0
+offset_right = 68.0
+offset_bottom = 26.0
+grow_horizontal = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Restore"
+autowrap_mode = 2
+
+[node name="Restart" type="Label" parent="Panel/MarginContainer/HBoxContainer/File/Panel/MarginContainer/VBoxContainer"]
+process_mode = 3
+offset_top = 30.0
+offset_right = 68.0
+offset_bottom = 41.0
+grow_horizontal = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Restart"
+autowrap_mode = 2
+
+[node name="Quit" type="Label" parent="Panel/MarginContainer/HBoxContainer/File/Panel/MarginContainer/VBoxContainer"]
+process_mode = 3
+offset_top = 45.0
+offset_right = 68.0
+offset_bottom = 56.0
+grow_horizontal = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Quit"
+autowrap_mode = 2
+
+[node name="Action" type="Label" parent="Panel/MarginContainer/HBoxContainer"]
+offset_left = 43.0
+offset_top = 1.0
+offset_right = 91.0
+offset_bottom = 12.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Action"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/HBoxContainer/Action"]
+show_behind_parent = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 12.0
+offset_right = 72.0
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_kwaig")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/HBoxContainer/Action/Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer/Action/Panel/MarginContainer"]
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 114.0
+offset_bottom = 34.0
+
+[node name="SeeObject" type="Label" parent="Panel/MarginContainer/HBoxContainer/Action/Panel/MarginContainer/VBoxContainer"]
+process_mode = 3
+offset_right = 108.0
+offset_bottom = 11.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "See Object"
+vertical_alignment = 1
+
+[node name="Inventory" type="Label" parent="Panel/MarginContainer/HBoxContainer/Action/Panel/MarginContainer/VBoxContainer"]
+process_mode = 3
+offset_top = 15.0
+offset_right = 108.0
+offset_bottom = 26.0
+grow_horizontal = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Inventory"
+autowrap_mode = 2
+
+[node name="Options" type="Label" parent="Panel/MarginContainer/HBoxContainer"]
+offset_left = 102.0
+offset_top = 1.0
+offset_right = 158.0
+offset_bottom = 12.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/HBoxContainer/Options"]
+show_behind_parent = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 12.0
+offset_right = 74.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_kwaig")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/HBoxContainer/Options/Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer/Options/Panel/MarginContainer"]
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 124.0
+offset_bottom = 19.0
+
+[node name="Sound" type="Label" parent="Panel/MarginContainer/HBoxContainer/Options/Panel/MarginContainer/VBoxContainer"]
+process_mode = 3
+offset_right = 118.0
+offset_bottom = 11.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Sound (On/Off)"
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="."]
+visible = false
+show_behind_parent = true
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 13.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_sdmgn")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel2/MarginContainer"]
+offset_right = 320.0
+offset_bottom = 13.0
+theme_override_constants/separation = 95
+
+[node name="Score" type="Label" parent="Panel2/MarginContainer/HBoxContainer"]
+offset_top = 1.0
+offset_right = 128.0
+offset_bottom = 12.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_j5lgw")
+text = " Score: 0 of 320"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sound" type="Label" parent="Panel2/MarginContainer/HBoxContainer"]
+offset_left = 223.0
+offset_top = 1.0
+offset_right = 303.0
+offset_bottom = 12.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Sound: Off"
+horizontal_alignment = 1
+vertical_alignment = 1
